@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Category {
+  start
+  science
+  politics
+}
+
+model question{
+  id Int @id @default(autoincrement())
+  question String 
+  option1 String
+  option2 String
+  option3 String
+  option4 String
+  answer Int
+  category Category
+  increment Int @default(50)
+  decrement Int @default(25)
+}
