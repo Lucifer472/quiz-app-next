@@ -28,6 +28,7 @@ setTimeout(() => {
           if (!isNaN(amt)) {
             const numbers = amt + 100;
             localStorage.setItem("amount", numbers.toString());
+            console.log(numbers);
           }
           localStorage.setItem("time", "2");
           window.location.href = "/home";

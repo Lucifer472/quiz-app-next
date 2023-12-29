@@ -11,7 +11,10 @@ const Home = () => {
 
   return (
     <div className="px-5 pt-[2rem] pb-20 flex flex-col w-full gap-6">
-      <div className="h-[300px]"></div>
+      <div
+        id="div-gpt-ad-1700655338779-0"
+        style={{ minWidth: "336px", minHeight: "280px;" }}
+      ></div>
       <div>
         <CategoryView />
       </div>
