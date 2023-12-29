@@ -17,7 +17,11 @@ const Home = async () => {
   });
 
   return (
-    <section className="flex flex-col items-center justify-center gap-8 mt-[300px] w-full">
+    <section className="flex flex-col items-center justify-center gap-8 w-full">
+      <div
+        id="div-gpt-ad-1700655338779-0"
+        style={{ minWidth: "336px", minHeight: "280px;" }}
+      ></div>
       <div className="flex flex-col items-center gap-1">
         <h1 className="text-center font-bold text-18">Let&apos;s begin!</h1>
         <span className="flex items-center gap-1 text-[12px] text-[#8789c3]">

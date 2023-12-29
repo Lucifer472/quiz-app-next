@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 // css import
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Script src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></Script>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -44,6 +46,17 @@ export default function RootLayout({
             <CheckHomepage />
           </main>
         </ThemeProvider>
+        <Script id="banner-ad" strategy="lazyOnload">
+          {`
+          window.googletag = window.googletag || {cmd: []};
+            googletag.cmd.push(function() {
+              googletag.defineSlot('/22989534981/DG_7_336X280', [336, 280], 'div-gpt-ad-1700655338779-0').addService(googletag.pubads());
+              googletag.pubads().enableSingleRequest();
+              googletag.enableServices();
+            });       
+          
+          googletag.cmd.push(function() { googletag.display('div-gpt-ad-1700655338779-0'); });`}
+        </Script>
       </body>
     </html>
   );
