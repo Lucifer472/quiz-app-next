@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const Navigation = () => {
   const pathname = usePathname();
   return (
-    <div className="px-5 pt-[2rem] pb-20 flex flex-col w-full gap-6">
+    <div className="px-1 xss:px-2 pt-[2rem] flex flex-col w-full gap-6">
       <div className="flex items-center justify-evenly w-full py-3 mx-auto fixed max-w-screen-xss bottom-0 text-xs  bg-[#020817] z-50">
         <Link
           href={"/cat"}
@@ -49,7 +49,7 @@ const Navigation = () => {
           <p className="mt-1">Home</p>
         </Link>
         <Link
-          href={"/cat"}
+          href={"/profile"}
           className={cn(
             "flex flex-col px-5 py-2 items-center rounded-full w-[100px]",
             pathname === "/profile" ? "bg-blue-900" : ""
