@@ -24,13 +24,17 @@ setTimeout(() => {
       googletag
         .pubads()
         .addEventListener("rewardedSlotGranted", function (evt) {
-          const amt = parseInt(localStorage.getItem("amount"));
-          if (!isNaN(amt)) {
-            const numbers = amt + 100;
-            localStorage.setItem("amount", numbers.toString());
-            console.log(numbers);
+          let i = true;
+          if (i) {
+            const amt = parseInt(localStorage.getItem("amount"));
+            if (!isNaN(amt)) {
+              const numbers = amt + 100;
+              localStorage.setItem("amount", numbers.toString());
+              console.log(numbers);
+            }
+            localStorage.setItem("time", "2");
+            i = false;
           }
-          localStorage.setItem("time", "2");
           window.location.href = "/home";
         });
       googletag.pubads().addEventListener("rewardedSlotClosed", function (evt) {
