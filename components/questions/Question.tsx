@@ -72,6 +72,8 @@ const Question = ({ quesionArray }: QuestionProps) => {
           }
           localStorage.setItem("time", "1");
           router.push("/claim");
+        } else {
+          router.push("/home");
         }
       }, 1000);
     }
