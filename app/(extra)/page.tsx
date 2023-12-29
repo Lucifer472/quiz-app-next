@@ -6,6 +6,8 @@ import { getQuestionsStarter } from "@/lib/getQuestions";
 import { redirect } from "next/navigation";
 import dynamic from "next/dynamic";
 
+export const revalidate = 3600;
+
 const Home = async () => {
   const questions = await getQuestionsStarter();
   if (questions.length === 0) redirect("/home");

@@ -46,14 +46,14 @@ const Question = ({ quesionArray }: QuestionProps) => {
         // @ts-ignore
         e.target.classList.add("bg-blue-400");
         setLock(true);
-        setScore((prev) => prev + question.increment);
+        setScore((prev) => prev + 50);
       } else {
         // @ts-ignore
         e.target.classList.add("bg-red-400");
         // @ts-ignore
         optionArray[question.answer - 1].current.classList.add("bg-blue-400");
         setLock(true);
-        setScore((prev) => prev - question.increment);
+        setScore((prev) => prev - 25);
       }
 
       setTimeout(() => {
@@ -66,8 +66,8 @@ const Question = ({ quesionArray }: QuestionProps) => {
         setLock(false);
         if (quesionArray.length - 1 > index) {
           setIndex(index + 1);
-        } else if (question.category === "start") {
-          if (score < 0 && localStorage.getItem("time") === null) {
+        } else if (localStorage.getItem("time") === null) {
+          if (score < 0) {
             localStorage.setItem("amount", "100");
           }
           localStorage.setItem("time", "1");

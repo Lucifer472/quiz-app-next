@@ -10,12 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Category {
-  start
-  science
-  politics
-}
-
 model question{
   id Int @id @default(autoincrement())
   question String 
@@ -24,7 +18,20 @@ model question{
   option3 String
   option4 String
   answer Int
-  category Category
+
+  quizId   Int
+  quiz     quiz   @relation(fields: [quizId], references: [id])
+
+  @@index([quizId])
+}
+
+model quiz{
+  id Int @id @default(autoincrement())
+  name String 
+  category String
   increment Int @default(50)
   decrement Int @default(25)
+
+  questions question[]
+
 }

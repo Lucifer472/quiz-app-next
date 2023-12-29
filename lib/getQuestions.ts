@@ -10,9 +10,7 @@ export const getQuestionsStarter = async () => {
       option3: true,
       option4: true,
       answer: true,
-      category: true,
-      increment: true,
-      decrement: true,
+      quizId: true,
     },
   });
   return data;

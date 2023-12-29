@@ -7,7 +7,7 @@ const Navigation = () => {
   const pathname = usePathname();
   return (
     <div className="px-5 pt-[2rem] pb-20 flex flex-col w-full gap-6">
-      <div className="flex items-center justify-evenly w-full pb-4 mx-auto fixed max-w-screen-xss bottom-0 text-xs">
+      <div className="flex items-center justify-evenly w-full py-3 mx-auto fixed max-w-screen-xss bottom-0 text-xs  bg-[#020817] z-50">
         <Link
           href={"/cat"}
           className={cn(
