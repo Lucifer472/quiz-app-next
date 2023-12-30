@@ -6,13 +6,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Welcome = () => {
-  const [isFirst, setIsFirst] = useState(localStorage.getItem("time"));
+  const [isFirst, setIsFirst] = useState(sessionStorage.getItem("time"));
 
   const router = useRouter();
 
   const handleClose = () => {
-    localStorage.setItem("time", "2");
-    setIsFirst(localStorage.getItem("time"));
+    sessionStorage.setItem("time", "2");
+    setIsFirst(sessionStorage.getItem("time"));
   };
 
   if (isFirst === "2") {

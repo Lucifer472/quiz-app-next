@@ -58,7 +58,7 @@ const CheckHomepage = () => {
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem("time") === null) {
+    if (sessionStorage.getItem("time") === null) {
       router.push("/");
     }
   }, [pathname, router]);

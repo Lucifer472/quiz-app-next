@@ -16,7 +16,7 @@ const Question = ({ quesionArray }: QuestionProps) => {
 
   const [score, setScore] = useState(
     //@ts-ignore
-    parseInt(localStorage.getItem("amount")) || 0
+    parseInt(sessionStorage.getItem("amount")) || 0
   );
 
   const router = useRouter();
@@ -34,7 +34,7 @@ const Question = ({ quesionArray }: QuestionProps) => {
   }, [index, quesionArray]);
 
   useEffect(() => {
-    localStorage.setItem("amount", score.toString());
+    sessionStorage.setItem("amount", score.toString());
   }, [score]);
 
   const handleClick = (
@@ -66,11 +66,11 @@ const Question = ({ quesionArray }: QuestionProps) => {
         setLock(false);
         if (quesionArray.length - 1 > index) {
           setIndex(index + 1);
-        } else if (localStorage.getItem("time") === null) {
+        } else if (sessionStorage.getItem("time") === null) {
           if (score < 0) {
-            localStorage.setItem("amount", "100");
+            sessionStorage.setItem("amount", "100");
           }
-          localStorage.setItem("time", "1");
+          sessionStorage.setItem("time", "1");
           router.push("/claim");
         } else {
           router.push("/home");
@@ -80,8 +80,8 @@ const Question = ({ quesionArray }: QuestionProps) => {
   };
 
   if (
-    localStorage.getItem("time") !== null &&
-    localStorage.getItem("time") === "2"
+    sessionStorage.getItem("time") !== null &&
+    sessionStorage.getItem("time") === "2"
   ) {
     router.push("/home");
     return <div></div>;

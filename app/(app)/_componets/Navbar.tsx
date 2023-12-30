@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const Navbar = () => {
   const [x, setX] = useState(true);
-  const coins = localStorage.getItem("amount");
+  const coins = sessionStorage.getItem("amount");
   return (
     <nav className="h-16 flex items-center justify-between w-full">
       <Link href={"/home"}>

@@ -22,10 +22,10 @@ setTimeout(() => {
         .addEventListener("rewardedSlotGranted", function (evt) {
           let i = true;
           if (i) {
-            const amt = parseInt(localStorage.getItem("amount"));
+            const amt = parseInt(sessionStorage.getItem("amount"));
             if (!isNaN(amt)) {
               const numbers = amt + 100;
-              localStorage.setItem("amount", numbers.toString());
+              sessionStorage.setItem("amount", numbers.toString());
               console.log(numbers);
             }
             i = false;
