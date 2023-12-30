@@ -10,7 +10,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   });
   return (
     <>
-      <Script src="/reward-ad.js" strategy="beforeInteractive"></Script>
+      <Script src="/reward-ad.js" strategy="afterInteractive"></Script>
       <Navbar />
       {children}
       <Navigation />

@@ -1,6 +1,16 @@
+"use client";
 import Script from "next/script";
+import { useEffect } from "react";
 
 const AdTop = () => {
+  useEffect(() => {
+    // @ts-ignore
+    googletag.cmd.push(function () {
+      // @ts-ignore
+      googletag.display("div-gpt-ad-1700655338779-0");
+    });
+  }, []);
+
   return (
     <>
       <Script id="Top-Ad" strategy="afterInteractive">
