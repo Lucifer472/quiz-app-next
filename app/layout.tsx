@@ -40,8 +40,8 @@ export default function RootLayout({
           <ToastContainer />
           <main className="max-w-screen-xss mx-auto px-2 xxs:px-1">
             {children}
-            <CheckHomepage />
           </main>
+          <CheckHomepage />
         </ThemeProvider>
       </body>
     </html>
