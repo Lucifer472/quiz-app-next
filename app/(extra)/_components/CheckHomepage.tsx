@@ -18,12 +18,12 @@ const CheckHomepage = () => {
     loadScript().then(() => {
       const script = document.createElement("script");
       script.text = `window.googletag = window.googletag || { cmd: [] };
-      let interstitialSlot: googletag.Slot | null;
+      let interstitialSlot;
 
       googletag.cmd.push(() => {
         // Define a web interstitial ad slot.
         interstitialSlot = googletag.defineOutOfPageSlot(
-          "/6355419/Travel/Europe/France/Paris",
+          "/22989534981/336x280_1",
           googletag.enums.OutOfPageFormat.INTERSTITIAL
         );
 
@@ -38,25 +38,17 @@ const CheckHomepage = () => {
             },
           });
 
-          document.getElementById("status")!.textContent =
-            "Interstitial is loading...";
-
-          // Add event listener to enable navigation once the interstitial loads.
-          // If this event doesn't fire, try clearing local storage and refreshing
-          // the page.
+          console.log("Interstitial is loading...");
           googletag.pubads().addEventListener("slotOnload", (event) => {
             if (interstitialSlot === event.slot) {
-              document.getElementById("link")!.style.display = "block";
-              document.getElementById("status")!.textContent =
-                "Interstitial is loaded.";
-            }
-          });
+             console.log("Ads Loaded");
+          }});
         }
 
         // Enable SRA and services.
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
-        googletag.display(interstitialSlot!);
+        googletag.display(interstitialSlot);
       });`;
 
       script.setAttribute("type", "module");
