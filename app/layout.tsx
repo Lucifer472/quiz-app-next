@@ -46,29 +46,24 @@ export default function RootLayout({
             <CheckHomepage />
           </main>
         </ThemeProvider>
-        <Script id="interstaller-ads" strategy="afterInteractive">
-          {`
-          googletag.cmd.push(function() {
-          googletag.display(interstitialSlot);
-          });
-      `}
-        </Script>
         <Script id="banner-ad" strategy="lazyOnload">
           {`
           window.googletag = window.googletag || {cmd: []};
           var interstitialSlot;
             googletag.cmd.push(function() {
-              interstitialSlot = googletag.defineOutOfPageSlot('/22989534981/DG_INTERSTITIAL', googletag.enums.OutOfPageFormat.INTERSTITIAL);
-                if (interstitialSlot) {
-                      interstitialSlot.addService(googletag.pubads());
-                      }
-              googletag.defineSlot('/22989534981/DG_7_336X280', [336, 280], 'div-gpt-ad-1700655338779-0').addService(googletag.pubads());
-              googletag.pubads().enableSingleRequest();
-              googletag.enableServices();
-            });       
-          
-          googletag.cmd.push(function() { googletag.display('div-gpt-ad-1700655338779-0'); });`}
+                interstitialSlot = googletag.defineOutOfPageSlot('/22989534981/DG_INTERSTITIAL', googletag.enums.OutOfPageFormat.INTERSTITIAL);
+                  if (interstitialSlot) {
+                        interstitialSlot.addService(googletag.pubads());
+                        }
+                googletag.defineSlot('/22989534981/MB_Rewarded', [1, 1], 'div-gpt-ad-1703845477928-0').addService(googletag.pubads());
+                googletag.defineSlot('/22989534981/DG_7_336X280', [336, 280], 'div-gpt-ad-1700655338779-0').addService(googletag.pubads());
+                googletag.display('div-gpt-ad-1700655338779-0');
+                googletag.display(interstitialSlot);
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });`}
         </Script>
+        <Script src="/ad.js" strategy="lazyOnload" />
       </body>
     </html>
   );
