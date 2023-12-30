@@ -4,10 +4,30 @@ import { useEffect } from "react";
 
 const AdTop = () => {
   useEffect(() => {
-    // @ts-ignore
-    googletag.cmd.push(function () {
+    addEventListener("DOMContentLoaded", () => {
       // @ts-ignore
-      googletag.display("div-gpt-ad-1700655338779-0");
+      window.googletag = window.googletag || { cmd: [] };
+      // @ts-ignore
+      googletag.cmd.push(function () {
+        // @ts-ignore
+        googletag
+          .defineSlot(
+            "/22989534981/DG_7_336X280",
+            [336, 280],
+            "div-gpt-ad-1700655338779-0"
+          )
+          // @ts-ignore
+          .addService(googletag.pubads());
+        // @ts-ignore
+        googletag.pubads().enableSingleRequest();
+        // @ts-ignore
+        googletag.enableServices();
+      });
+      // @ts-ignore
+      googletag.cmd.push(function () {
+        // @ts-ignore
+        googletag.display("div-gpt-ad-1700655338779-0");
+      });
     });
   }, []);
 
