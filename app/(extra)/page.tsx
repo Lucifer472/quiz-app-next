@@ -5,6 +5,7 @@ import { getQuestionsStarter } from "@/lib/getQuestions";
 
 import Facts from "@/components/fact/Facts";
 import Coin from "@/components/logo/Coin";
+import Script from "next/script";
 
 export const revalidate = 0;
 
@@ -22,6 +23,11 @@ const Home = async () => {
 
   return (
     <section className="flex flex-col items-center justify-center gap-8 w-full">
+      <Script
+        src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+        async
+        strategy="beforeInteractive"
+      />
       <AdTop />
       <div className="flex flex-col items-center gap-1">
         <h1 className="text-center font-bold text-18">Let&apos;s begin!</h1>

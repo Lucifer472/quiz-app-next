@@ -37,7 +37,8 @@ const Welcome = () => {
           Watch a simple ad and get rewarded
         </p>
         <button
-          className="bg-[#D8E91E] w-full rounded-[1.5rem] text-black font-bold py-4 px-4 mr-2 claim-first-time"
+          id="claim-first-time"
+          className="bg-[#D8E91E] w-full rounded-[1.5rem] text-black font-bold py-4 px-4 mr-2 "
           style={{
             boxShadow:
               "rgba(216, 233, 30, 0.9) 0px 10px 50px -20px, rgba(0, 0, 0, 0.9) 0px 20px 60px -30px",

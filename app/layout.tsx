@@ -10,8 +10,6 @@ import { ToastContainer } from "react-toastify";
 // css import
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
-import Script from "next/script";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -34,30 +32,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Script
-          src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
-          async
-          strategy="beforeInteractive"
-        />
-        <Script id="interstallar-ads" strategy="beforeInteractive">
-          {`
-          window.googletag = window.googletag || {cmd: []};
-  var interstitialSlot;
-  googletag.cmd.push(function() {
-    interstitialSlot = googletag.defineOutOfPageSlot('/22989534981/DG_INTERSTITIAL', googletag.enums.OutOfPageFormat.INTERSTITIAL);
-    if (interstitialSlot) {
-          interstitialSlot.addService(googletag.pubads());
-          }
-    googletag.pubads().enableSingleRequest();
-    googletag.enableServices();
-  });`}
-        </Script>
-        <Script id="inter-ads" strategy="afterInteractive">
-          {`googletag.cmd.push(function() {
-         googletag.display(interstitialSlot);
-        });
-`}
-        </Script>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
