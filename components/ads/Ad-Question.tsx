@@ -4,11 +4,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const AdTop = () => {
-  const [slot, setSlot] = useState<any>(null);
   const pathname = usePathname();
   window.googletag = window.googletag || { cmd: [] };
 
   useEffect(() => {
+    let sl: googletag.Slot | null;
     const loadAds = async () => {
       LoadScript(() => {
         console.log("Script Loaded");
@@ -16,12 +16,11 @@ const AdTop = () => {
     };
     loadAds().then(() => {
       googletag.cmd.push(function () {
-        let sl = googletag.defineSlot(
+        sl = googletag.defineSlot(
           "/22989534981/336x280_1",
           [336, 280],
           "div-gpt-ad-1703922138817-0"
         );
-        setSlot(sl);
         if (sl !== null) sl.addService(googletag.pubads());
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
@@ -31,9 +30,9 @@ const AdTop = () => {
 
     return () => {
       // Clean up the ad slot when the component unmounts or pathname changes
-      if (googletag && slot !== null) {
+      if (googletag && sl !== null) {
         googletag.cmd.push(function () {
-          googletag.destroySlots([slot]);
+          googletag.destroySlots([sl as googletag.Slot]);
         });
       }
     };
