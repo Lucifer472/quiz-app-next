@@ -31,9 +31,7 @@ const AdTop = () => {
         });
       });
     };
-    loadAds().then(() => {
-      console.log("ITS WORKING");
-    });
+    loadAds();
 
     return () => {
       // Clean up the ad slot when the component unmounts or pathname changes
@@ -41,9 +39,13 @@ const AdTop = () => {
       if (googletag) {
         // @ts-ignore
         googletag.cmd.push(function () {
-          console.log("SEE");
           // @ts-ignore
-          googletag.destroySlots();
+          const isDes = googletag.destroySlots(["div-gpt-ad-1700655338779-0"]);
+          if (isDes) {
+            console.log("IT WORKS");
+          } else {
+            console.log("IT DOESN");
+          }
         });
       }
     };
