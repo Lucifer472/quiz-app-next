@@ -15,7 +15,7 @@ const CheckHomepage = () => {
             console.log('interstitial slot init');
             // Define a web interstitial ad slot.
             let interstitialSlot = googletag.defineOutOfPageSlot(
-              "/22989534981/DG_INTERSTITIAL",
+              "/22989534981/INS_1",
               googletag.enums.OutOfPageFormat.INTERSTITIAL
             );
             interstitialSlot
