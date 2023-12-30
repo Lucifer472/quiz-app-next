@@ -1,9 +1,10 @@
 "use client";
 import LoadScript from "@/lib/load";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const AdTop = () => {
+  const [slot, setSlot] = useState<any>(null);
   const pathname = usePathname();
   // @ts-ignore
   window.googletag = window.googletag || { cmd: [] };
@@ -13,15 +14,17 @@ const AdTop = () => {
       LoadScript(() => {
         // @ts-ignore
         googletag.cmd.push(function () {
-          // @ts-ignore
-          googletag
-            .defineSlot(
-              "/22989534981/336x280_1",
-              [336, 280],
-              "div-gpt-ad-1703922138817-0"
-            )
+          setSlot(
             // @ts-ignore
-            .addService(googletag.pubads());
+            googletag
+              .defineSlot(
+                "/22989534981/336x280_1",
+                [336, 280],
+                "div-gpt-ad-1703922138817-0"
+              )
+              // @ts-ignore
+              .addService(googletag.pubads())
+          );
           // @ts-ignore
           googletag.pubads().enableSingleRequest();
           // @ts-ignore
@@ -36,11 +39,11 @@ const AdTop = () => {
     return () => {
       // Clean up the ad slot when the component unmounts or pathname changes
       // @ts-ignore
-      if (googletag) {
+      if (googletag && slot !== null) {
         // @ts-ignore
         googletag.cmd.push(function () {
           // @ts-ignore
-          googletag.destroySlots();
+          googletag.destroySlots([slot]);
         });
       }
     };

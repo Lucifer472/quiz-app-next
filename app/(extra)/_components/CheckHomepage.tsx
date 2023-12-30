@@ -9,34 +9,44 @@ const CheckHomepage = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    const showAds = async () => {
-      LoadScript(() => {
-        // @ts-ignore
-        window.googletag = window.googletag || { cmd: [] };
-        // @ts-ignore
-        googletag.cmd.push(function () {
-          var interstitialSlot;
-          // @ts-ignore
-          interstitialSlot = googletag.defineOutOfPageSlot(
-            "/22989534981/DG_INTERSTITIAL",
-            // @ts-ignore
-            googletag.enums.OutOfPageFormat.INTERSTITIAL
-          );
-          if (interstitialSlot) {
-            // @ts-ignore
-            interstitialSlot.addService(googletag.pubads());
-          }
-          // @ts-ignore
-          googletag.pubads().enableSingleRequest();
-          // @ts-ignore
+    const script = document.createElement("script");
+    script.text = `window.googletag = window.googletag || { cmd: [] };
+          googletag.cmd.push(function () {
+            console.log('interstitial slot init');
+            // Define a web interstitial ad slot.
+            let interstitialSlot = googletag.defineOutOfPageSlot(
+              "/22989534981/DG_INTERSTITIAL",
+              googletag.enums.OutOfPageFormat.INTERSTITIAL
+            );
+            interstitialSlot
+                  .addService(googletag.pubads());
+            console.log("interstitialSlot", interstitialSlot)
+      
+            // Slot returns null if the page or device does not support interstitials.
+            if (interstitialSlot) {
+              interstitialSlot
+                .addService(window.googletag.pubads())
+                .setConfig({
+                  interstitial: {
+                    triggers: {
+                      unhideWindow: true,
+                    },
+                  },
+                });
+      
+              // Add an event listener to handle when the slot loads
+              window.googletag.pubads().addEventListener("slotOnload", function (event) {
+                if (interstitialSlot === event.slot) {
+                  console.log("Interstitial vignette is loaded.");
+                }
+              });
+            }
+            googletag.pubads().enableSingleRequest();
           googletag.enableServices();
-          // @ts-ignore
-          googletag.display(interstitialSlot);
-        });
-      });
-    };
-    showAds();
-  }, [pathname]);
+          googletag.pubads().refresh([interstitialSlot]);
+          });`;
+    document.head.appendChild(script);
+  }, []);
 
   useEffect(() => {
     if (localStorage.getItem("time") === null) {
