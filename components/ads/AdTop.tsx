@@ -15,15 +15,6 @@ const AdTop = () => {
           // @ts-ignore
           googletag.cmd.push(function () {
             // @ts-ignore
-            googletag
-              .defineSlot(
-                "/22989534981/336x280_1",
-                [336, 280],
-                "div-gpt-ad-1703922138817-0"
-              )
-              // @ts-ignore
-              .addService(googletag.pubads());
-            // @ts-ignore
             googletag.enableServices();
             // @ts-ignore
             googletag.display("div-gpt-ad-1703922138817-0");
@@ -42,7 +33,16 @@ const AdTop = () => {
   return (
     <>
       <Script id="Top-Ad" strategy="afterInteractive">
-        {`window.googletag = window.googletag || {cmd: []}`}
+        {`window.googletag = window.googletag || {cmd: []};
+        googletag.cmd.push(function () {
+            googletag
+              .defineSlot(
+                "/22989534981/336x280_1",
+                [336, 280],
+                "div-gpt-ad-1703922138817-0"
+              )
+              .addService(googletag.pubads());
+        })`}
       </Script>
       <div
         id="div-gpt-ad-1703922138817-0"
