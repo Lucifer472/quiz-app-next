@@ -1,5 +1,12 @@
+import AdTop from "@/components/ads/AdTop";
+
 const profile = () => {
-  return <div>page</div>;
+  return (
+    <div>
+      <AdTop />
+      page
+    </div>
+  );
 };
 
 export default profile;

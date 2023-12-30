@@ -1,8 +1,11 @@
 "use client";
+import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { useEffect } from "react";
 
 const AdTop = () => {
+  const pathname = usePathname();
+
   useEffect(() => {
     addEventListener("DOMContentLoaded", () => {
       // @ts-ignore
@@ -29,7 +32,7 @@ const AdTop = () => {
         googletag.display("div-gpt-ad-1700655338779-0");
       });
     });
-  }, []);
+  }, [pathname]);
 
   return (
     <>
