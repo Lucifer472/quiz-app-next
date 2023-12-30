@@ -10,6 +10,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   });
   return (
     <>
+      <Script
+        src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+        async
+        strategy="beforeInteractive"
+      />
       <Script src="/reward-ad.js" strategy="afterInteractive"></Script>
       <Navbar />
       {children}
