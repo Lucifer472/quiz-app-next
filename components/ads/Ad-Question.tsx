@@ -1,48 +1,53 @@
 "use client";
 import LoadScript from "@/lib/load";
 import { usePathname } from "next/navigation";
-import Script from "next/script";
 import { useEffect } from "react";
 
 const AdTop = () => {
   const pathname = usePathname();
+  // @ts-ignore
+  window.googletag = window.googletag || { cmd: [] };
 
   useEffect(() => {
     const loadAds = async () => {
       LoadScript(() => {
         // @ts-ignore
-        if (googletag) {
+        googletag.cmd.push(function () {
           // @ts-ignore
-          googletag.cmd.push(function () {
+          googletag
+            .defineSlot(
+              "/22989534981/336x280_1",
+              [336, 280],
+              "div-gpt-ad-1703922138817-0"
+            )
             // @ts-ignore
-            googletag.display("div-gpt-ad-1703922138817-0");
-            console.log("Pushing");
-          });
-        } else {
-          console.log("Not working");
-        }
+            .addService(googletag.pubads());
+          // @ts-ignore
+          googletag.pubads().enableSingleRequest();
+          // @ts-ignore
+          googletag.enableServices();
+          // @ts-ignore
+          googletag.display("div-gpt-ad-1703922138817-0");
+        });
       });
     };
-    loadAds().then(() => {
-      console.log("ITS WORKING");
-    });
+    loadAds();
+
+    return () => {
+      // Clean up the ad slot when the component unmounts or pathname changes
+      // @ts-ignore
+      if (googletag) {
+        // @ts-ignore
+        googletag.cmd.push(function () {
+          // @ts-ignore
+          googletag.destroySlots();
+        });
+      }
+    };
   }, [pathname]);
 
   return (
     <>
-      <Script id="Top-Ad" strategy="afterInteractive">
-        {`window.googletag = window.googletag || {cmd: []};
-        googletag.cmd.push(function () {
-            googletag
-              .defineSlot(
-                "/22989534981/336x280_1",
-                [336, 280],
-                "div-gpt-ad-1703922138817-0"
-              )
-              .addService(googletag.pubads());
-              googletag.enableServices();
-        })`}
-      </Script>
       <div
         id="div-gpt-ad-1703922138817-0"
         style={{ minWidth: "336px", minHeight: "280px" }}

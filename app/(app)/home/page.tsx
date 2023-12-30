@@ -10,8 +10,13 @@ const Home = () => {
     ssr: false,
   });
 
+  const AdTop = dynamic(() => import("@/components/ads/Ad-Question"), {
+    ssr: false,
+  });
+
   return (
     <div className="px-5 pt-[2rem] pb-16 flex flex-col w-full gap-6">
+      <AdTop />
       <div>
         <CategoryView />
       </div>

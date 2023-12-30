@@ -40,12 +40,7 @@ const AdTop = () => {
         // @ts-ignore
         googletag.cmd.push(function () {
           // @ts-ignore
-          const isDes = googletag.destroySlots(["div-gpt-ad-1700655338779-0"]);
-          if (isDes) {
-            console.log("IT WORKS");
-          } else {
-            console.log("IT DOESN");
-          }
+          googletag.destroySlots();
         });
       }
     };
