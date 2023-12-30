@@ -38,7 +38,26 @@ export default function RootLayout({
           src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
           async
           strategy="beforeInteractive"
-        ></Script>
+        />
+        <Script id="interstallar-ads" strategy="beforeInteractive">
+          {`
+          window.googletag = window.googletag || {cmd: []};
+  var interstitialSlot;
+  googletag.cmd.push(function() {
+    interstitialSlot = googletag.defineOutOfPageSlot('/22989534981/DG_INTERSTITIAL', googletag.enums.OutOfPageFormat.INTERSTITIAL);
+    if (interstitialSlot) {
+          interstitialSlot.addService(googletag.pubads());
+          }
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });`}
+        </Script>
+        <Script id="inter-ads" strategy="afterInteractive">
+          {`googletag.cmd.push(function() {
+         googletag.display(interstitialSlot);
+        });
+`}
+        </Script>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -50,49 +69,6 @@ export default function RootLayout({
             <CheckHomepage />
           </main>
         </ThemeProvider>
-        <Script id="banner-ad" strategy="beforeInteractive">
-          {`
-          window.googletag = window.googletag || {cmd: []};
-          googletag.cmd.push(function() {
-            googletag.defineSlot('/22989534981/DG_7_336X280', [336, 280], 'div-gpt-ad-1700655338779-0').addService(googletag.pubads());
-            googletag.pubads().enableSingleRequest();
-            googletag.enableServices();
-          });
-          `}
-        </Script>
-        <Script id="InterStaller-ads" strategy="beforeInteractive">
-          {`window.googletag = window.googletag || {cmd: []};
-              var interstitialSlot;
-              googletag.cmd.push(function() {
-                interstitialSlot = googletag.defineOutOfPageSlot('/22989534981/DG_INTERSTITIAL', googletag.enums.OutOfPageFormat.INTERSTITIAL);
-                if (interstitialSlot) {
-                      interstitialSlot.addService(googletag.pubads());
-                      }
-                googletag.pubads().enableSingleRequest();
-                googletag.enableServices();
-              });
-            `}
-        </Script>
-        <Script id="Anchor-ads" strategy="beforeInteractive">
-          {`window.googletag = window.googletag || {cmd: []};
-            var anchorSlot;
-            googletag.cmd.push(function() {
-            anchorSlot = googletag.defineOutOfPageSlot('/22989534981/TOP_ANCHOR', googletag.enums.OutOfPageFormat.TOP_ANCHOR);
-              if (anchorSlot) {
-                      anchorSlot.addService(googletag.pubads());
-                      }
-                googletag.pubads().enableSingleRequest();
-                googletag.enableServices();
-              });
-            `}
-        </Script>
-        <Script id="inter-ads" strategy="afterInteractive">
-          {`googletag.cmd.push(function() {
-                  googletag.display(interstitialSlot);
-                  });
-            `}
-        </Script>
-        <Script src="/ad.js" strategy="lazyOnload" />
       </body>
     </html>
   );

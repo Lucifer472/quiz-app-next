@@ -1,14 +1,10 @@
 setTimeout(() => {
-  const getad = document.querySelectorAll(".claim-first-time");
-  console.log("selected ancher tags :", getad);
-  getad.forEach((elem) => {
-    elem.addEventListener("click", function (e) {
-      e.preventDefault();
-      getrewardad();
-    });
+  const getad = document.querySelector("#claim-rew-time");
+  getad.addEventListener("click", function (e) {
+    e.preventDefault();
+    getrewardad();
   });
   const getrewardad = () => {
-    console.log("Loading Ads");
     googletag = window.googletag || { cmd: [] };
     googletag.cmd.push(() => {
       const rewardedSlot = googletag
@@ -32,7 +28,6 @@ setTimeout(() => {
               localStorage.setItem("amount", numbers.toString());
               console.log(numbers);
             }
-            localStorage.setItem("time", "2");
             i = false;
           }
         });

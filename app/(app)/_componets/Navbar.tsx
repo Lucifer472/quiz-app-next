@@ -15,7 +15,8 @@ const Navbar = () => {
       <div className="w-full flex items-center justify-end">
         {x && (
           <div
-            className="flex items-center gap-1 text-center px-2 cursor-pointer claim-first-time"
+            className="flex items-center gap-1 text-center px-2 cursor-pointer"
+            id="claim-rew-time"
             onClick={() => setX(false)}
           >
             <Image

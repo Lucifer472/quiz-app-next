@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Script from "next/script";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const Navbar = dynamic(() => import("./_componets/Navbar"), {
@@ -9,6 +10,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   });
   return (
     <>
+      <Script src="/reward-ad.js" strategy="beforeInteractive"></Script>
       <Navbar />
       {children}
       <Navigation />
