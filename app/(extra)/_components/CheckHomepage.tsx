@@ -13,9 +13,9 @@ const CheckHomepage = () => {
       LoadScript(() => {
         // @ts-ignore
         window.googletag = window.googletag || { cmd: [] };
-        var interstitialSlot;
         // @ts-ignore
         googletag.cmd.push(function () {
+          var interstitialSlot;
           // @ts-ignore
           interstitialSlot = googletag.defineOutOfPageSlot(
             "/22989534981/DG_INTERSTITIAL",
@@ -30,26 +30,12 @@ const CheckHomepage = () => {
           googletag.pubads().enableSingleRequest();
           // @ts-ignore
           googletag.enableServices();
-        });
-      });
-    };
-    showAds().then(() => {
-      // @ts-ignore
-      googletag.cmd.push(function () {
-        // @ts-ignore
-        googletag.display(interstitialSlot);
-      });
-    });
-    return () => {
-      // @ts-ignore
-      if (googletag) {
-        // @ts-ignore
-        googletag.cmd.push(function () {
           // @ts-ignore
-          googletag.destroySlots([interstitialSlot]);
+          googletag.display(interstitialSlot);
         });
-      }
+      });
     };
+    showAds();
   }, [pathname]);
 
   useEffect(() => {
