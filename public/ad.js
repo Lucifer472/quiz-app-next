@@ -35,7 +35,6 @@ setTimeout(() => {
             localStorage.setItem("time", "2");
             i = false;
           }
-          window.location.href = "/home";
         });
       googletag.pubads().addEventListener("rewardedSlotClosed", function (evt) {
         googletag.destroySlots([rewardedSlot]);

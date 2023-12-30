@@ -1,12 +1,12 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import { redirect } from "next/navigation";
+import { getQuestionsStarter } from "@/lib/getQuestions";
+
 import Facts from "@/components/fact/Facts";
 import Coin from "@/components/logo/Coin";
 
-import { getQuestionsStarter } from "@/lib/getQuestions";
-import { redirect } from "next/navigation";
-import dynamic from "next/dynamic";
-
-export const revalidate = 3600;
+export const revalidate = 0;
 
 const Home = async () => {
   const questions = await getQuestionsStarter();
@@ -16,12 +16,13 @@ const Home = async () => {
     ssr: false,
   });
 
+  const AdTop = dynamic(() => import("@/components/ads/AdTop"), {
+    ssr: false,
+  });
+
   return (
     <section className="flex flex-col items-center justify-center gap-8 w-full">
-      <div
-        id="div-gpt-ad-1700655338779-0"
-        style={{ minWidth: "336px", minHeight: "280px;" }}
-      ></div>
+      <AdTop />
       <div className="flex flex-col items-center gap-1">
         <h1 className="text-center font-bold text-18">Let&apos;s begin!</h1>
         <span className="flex items-center gap-1 text-[12px] text-[#8789c3]">

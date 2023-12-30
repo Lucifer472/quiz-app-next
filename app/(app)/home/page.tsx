@@ -9,12 +9,13 @@ const Home = () => {
     ssr: false,
   });
 
+  const AdTop = dynamic(() => import("@/components/ads/AdTop"), {
+    ssr: false,
+  });
+
   return (
     <div className="px-5 pt-[2rem] pb-16 flex flex-col w-full gap-6">
-      <div
-        id="div-gpt-ad-1700655338779-0"
-        style={{ minWidth: "336px", minHeight: "280px;" }}
-      ></div>
+      <AdTop />
       <div>
         <CategoryView />
       </div>
