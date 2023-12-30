@@ -4,45 +4,37 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const AdTop = () => {
-  const [slot, setSlot] = useState<any>(null);
   const pathname = usePathname();
-  // @ts-ignore
   window.googletag = window.googletag || { cmd: [] };
+
   useEffect(() => {
+    let sl: googletag.Slot | null;
     const loadAds = async () => {
       LoadScript(() => {
-        // @ts-ignore
-        googletag.cmd.push(function () {
-          setSlot(
-            // @ts-ignore
-            googletag
-              .defineSlot(
-                "/22989534981/DG_7_336X280",
-                [336, 280],
-                "div-gpt-ad-1700655338779-0"
-              )
-              // @ts-ignore
-              .addService(googletag.pubads())
-          );
-          // @ts-ignore
-          googletag.pubads().enableSingleRequest();
-          // @ts-ignore
-          googletag.enableServices();
-          // @ts-ignore
-          googletag.display("div-gpt-ad-1700655338779-0");
-        });
+        console.log("Script Loaded");
       });
     };
-    loadAds();
-
+    loadAds().then(() => {
+      googletag.cmd.push(function () {
+        sl = googletag.defineSlot(
+          "/22989534981/DG_7_336X280",
+          [336, 280],
+          "div-gpt-ad-1700655338779-0"
+        );
+        if (sl !== null) sl.addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+        googletag.display("div-gpt-ad-1700655338779-0");
+      });
+    });
     return () => {
       // Clean up the ad slot when the component unmounts or pathname changes
-      // @ts-ignore
-      if (googletag && slot !== null) {
-        // @ts-ignore
+      if (googletag && sl !== null) {
         googletag.cmd.push(function () {
-          // @ts-ignore
-          googletag.destroySlots([slot]);
+          let x = googletag.destroySlots([sl as googletag.Slot]);
+          if (x) {
+            console.log("IT WORKS");
+          }
         });
       }
     };
