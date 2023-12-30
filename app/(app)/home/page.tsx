@@ -17,7 +17,9 @@ const Home = () => {
   return (
     <div className="px-5 pt-[2rem] pb-16 flex flex-col w-full gap-6">
       <Script
-        src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+        src={`https://securepubads.g.doubleclick.net/tag/js/gpt.js?v=${
+          Math.random() * 100
+        }`}
         async
         strategy="beforeInteractive"
       />
