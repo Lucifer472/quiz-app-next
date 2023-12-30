@@ -15,8 +15,6 @@ const AdTop = () => {
           // @ts-ignore
           googletag.cmd.push(function () {
             // @ts-ignore
-            googletag.enableServices();
-            // @ts-ignore
             googletag.display("div-gpt-ad-1703922138817-0");
             console.log("Pushing");
           });
@@ -42,6 +40,7 @@ const AdTop = () => {
                 "div-gpt-ad-1703922138817-0"
               )
               .addService(googletag.pubads());
+              googletag.enableServices();
         })`}
       </Script>
       <div

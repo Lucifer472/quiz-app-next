@@ -1,7 +1,11 @@
-import AdTop from "@/components/ads/AdTop";
+import dynamic from "next/dynamic";
 import Script from "next/script";
 
 const Cat = () => {
+  const AdTop = dynamic(() => import("@/components/ads/Ad-Category"), {
+    ssr: false,
+  });
+
   return (
     <div>
       <AdTop />

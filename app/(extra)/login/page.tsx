@@ -3,12 +3,10 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import LoginNumber from "../_components/LoginNumber";
 import Facts from "@/components/fact/Facts";
-import AdTop from "@/components/ads/AdTop";
 
 const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full gap-2">
-      <AdTop />
       <div className="w-full flex px-3 py-4 items-center gap-2 mb-5">
         <Link href={"/home"}>
           <ChevronLeft />
