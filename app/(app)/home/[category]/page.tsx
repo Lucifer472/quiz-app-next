@@ -13,10 +13,10 @@ const categoryPage = async ({ params }: { params: { category: string } }) => {
     ssr: false,
   });
 
-  const AdTop = dynamic(() => import("@/components/ads/Ad-Question"), {
+  const AdTop = dynamic(() => import("@/components/ads/Ad-Category"), {
     ssr: false,
   });
-  
+
   const quiz = await getAllFromCat(decodeURIComponent(params.category));
   return (
     <div className="px-5 pt-[2rem] pb-16 flex flex-col w-full gap-6">

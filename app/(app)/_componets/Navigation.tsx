@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const Navigation = () => {
   const pathname = usePathname();
   return (
-    <div className="px-1 xss:px-2 pt-[2rem] flex flex-col w-full gap-6">
+    <div className="px-1 xss:px-2 bg-[#020817] pt-[2rem] flex flex-col w-full gap-6">
       <div className="grid grid-cols-3 items-center w-full max-w-screen-xss py-3 fixed  bottom-0 bg-[#020817] z-50">
         <div className="flex flex-col items-center justify-center w-full col-span-1">
           <Link

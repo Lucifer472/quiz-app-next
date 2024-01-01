@@ -12,7 +12,7 @@ const QuizTab = ({ name, category, id }: QuizTabProps) => {
   return (
     <div className="flex flex-col gap-2 w-full bg-[rgb(31,41,55)] border border-border rounded-full py-2 cursor-pointer">
       <Link
-        href={`/home/${id}`}
+        href={`/home/${category}/${id}`}
         className="flex gap-2 items-center px-2 justify-between"
       >
         <div className="flex flex-col">

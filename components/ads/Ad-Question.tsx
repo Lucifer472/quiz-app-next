@@ -1,7 +1,7 @@
 "use client";
 import LoadScript from "@/lib/load";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const AdTop = () => {
   const pathname = usePathname();
