@@ -43,3 +43,20 @@ export const getAllFromCat = async (cat: string) => {
 
   return quizzes as quiz[];
 };
+
+export const getQuestionQuiz = async (id: number) => {
+  const quiz = await db.quiz.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
+  const question = await db.question.findMany({
+    take: 15,
+    where: {
+      quizId: id,
+    },
+  });
+
+  return { question, quiz };
+};
