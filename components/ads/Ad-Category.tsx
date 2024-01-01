@@ -31,10 +31,7 @@ const AdTop = () => {
       // Clean up the ad slot when the component unmounts or pathname changes
       if (googletag && sl !== null) {
         googletag.cmd.push(function () {
-          let x = googletag.destroySlots([sl as googletag.Slot]);
-          if (x) {
-            console.log("IT WORKS");
-          }
+          googletag.destroySlots([sl as googletag.Slot]);
         });
       }
     };

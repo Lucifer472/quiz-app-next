@@ -2,12 +2,19 @@
 import Logo from "@/components/logo/Logo";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [x, setX] = useState(true);
-  const coins = sessionStorage.getItem("amount");
+  const [coins, setCoins] = useState(sessionStorage.getItem("amount"));
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setCoins(sessionStorage.getItem("amount"));
+  }, [pathname]);
 
   const getrewardad = () => {
     googletag.cmd.push(() => {
@@ -27,6 +34,7 @@ const Navbar = () => {
           if (!isNaN(amt)) {
             const numbers = amt + 100;
             sessionStorage.setItem("amount", numbers.toString());
+            setCoins(sessionStorage.getItem("amount"));
           }
           setX(false);
           toast("100 Coins Added successfully");
