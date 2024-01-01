@@ -1,6 +1,10 @@
+"use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const BannerAd = () => {
+  const router = useRouter();
+
   window.googletag = window.googletag || { cmd: [] };
 
   const getrewardad = () => {
@@ -34,11 +38,11 @@ const BannerAd = () => {
   };
 
   return (
-    <div className="fixed modal z-[60] inset-0 flex items-center  justify-center w-[100%] ">
+    <div className="fixed modal z-[60] inset-0 flex items-center  justify-center w-full ">
       <div className="fixed inset-0 bg-gray-800 opacity-50"></div>
-      <div className="max-w-[600px] relative flex bg-[#111827] border-2 border-white text-white flex-col justify-center items-center mx-4  p-8  rounded-[1.5rem] lg:w-full w-[40%]">
+      <div className="max-w-[600px] relative flex bg-[#111827] border-2 border-white text-white flex-col justify-center items-center mx-4  p-8  rounded-[1.5rem] w-full">
         <button
-          onClick={getrewardad}
+          onClick={() => router.push("/home")}
           className="absolute top-0 right-0 m-4 text-white-500 hover:text-gray-700 focus:outline-none"
         >
           <svg
@@ -59,7 +63,10 @@ const BannerAd = () => {
         <Image src={"/ad-banner.png"} alt="Ad" width={100} height={100} />
         <h2 className="text-4xl text-[#D8E91E] md:text-[1.5rem] mb-4">oops!</h2>
         <p className="mb-6 text-[#8E8F98]">Not enough coins to play</p>
-        <button className="bg-[#D8E91E]   md:w-[100%] w-[50%] rounded-[1.5rem] text-black font-bold py-4 px-4 mr-2">
+        <button
+          onClick={getrewardad}
+          className="bg-[#D8E91E]   md:w-[100%] w-[50%] rounded-[1.5rem] text-black font-bold py-4 px-4 mr-2"
+        >
           Watch Ad
         </button>
       </div>
