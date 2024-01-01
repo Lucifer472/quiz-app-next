@@ -24,17 +24,17 @@ const StartQuiz = ({ quiz, questions }: startQuizProps) => {
 
   if (start) {
     if (coins === null) router.push("/");
-    if (parseFloat(coins as string) < 100) {
+    if (parseFloat(coins as string) < 99) {
+      console.log(coins);
       return <BannerAd />;
+    } else {
+      return (
+        <>
+          <Question quesionArray={questions} />
+          <AdBottom />
+        </>
+      );
     }
-    let coin = parseInt(coins as string) - 100;
-    sessionStorage.setItem("amount", coin.toString());
-    return (
-      <>
-        <Question quesionArray={questions} />
-        <AdBottom />
-      </>
-    );
   }
 
   return (

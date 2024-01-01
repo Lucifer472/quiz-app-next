@@ -35,9 +35,9 @@ const Navbar = () => {
             const numbers = amt + 100;
             sessionStorage.setItem("amount", numbers.toString());
             setCoins(sessionStorage.getItem("amount"));
+            toast("100 Coins Added successfully");
           }
           setX(false);
-          toast("100 Coins Added successfully");
         }
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", function () {

@@ -4,6 +4,7 @@ import { question } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Welcome from "@/components/questions/Welcome";
+import GameEnd from "./GameEnd";
 
 interface QuestionProps {
   quesionArray: question[];
@@ -18,6 +19,7 @@ const Question = ({ quesionArray }: QuestionProps) => {
   const [score, setScore] = useState<number>(0);
 
   const [isWelcomed, setIsWelcomed] = useState(false);
+  const [gameEnd, setGameEnd] = useState(false);
 
   const router = useRouter();
   // Refrence
@@ -33,13 +35,20 @@ const Question = ({ quesionArray }: QuestionProps) => {
     setQuestion(quesionArray[index]);
   }, [index, quesionArray]);
 
+  useEffect(() => {
+    let coins: string | null | number = sessionStorage.getItem("amount");
+    if (coins === null) {
+      router.push("/home");
+    } else {
+      coins = parseInt(coins as string) - 100;
+      sessionStorage.setItem("amount", coins.toString());
+    }
+  }, []);
+
   const endGame = () => {
-    console.log(score);
     let prevCoins = sessionStorage.getItem("amount");
     if (prevCoins !== null) {
-      let coins = parseInt(prevCoins) + score;
-      sessionStorage.setItem("amount", coins.toString());
-      router.push("/home");
+      setGameEnd(true);
     } else {
       if (score < 0) {
         sessionStorage.setItem("amount", "100");
@@ -85,6 +94,8 @@ const Question = ({ quesionArray }: QuestionProps) => {
       }, 1000);
     }
   };
+
+  if (gameEnd) return <GameEnd score={score} />;
 
   if (isWelcomed) return <Welcome />;
 
