@@ -2,12 +2,18 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import QuizAndCoinBtn from "../_componets/quiz-coins";
 
 const profile = () => {
   const AdTop = dynamic(() => import("@/components/ads/Ad-Question"), {
     ssr: false,
   });
+
+  const QuizAndCoinBtn = dynamic(
+    () => import("@/app/(app)/_componets/quiz-coins"),
+    {
+      ssr: false,
+    }
+  );
   return (
     <div className="w-full">
       <div className="px-5 pt-[2rem] pb-20 flex flex-col w-full gap-6">
