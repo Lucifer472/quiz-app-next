@@ -7,6 +7,36 @@ import { useState } from "react";
 const Navbar = () => {
   const [x, setX] = useState(true);
   const coins = sessionStorage.getItem("amount");
+
+  const getrewardad = () => {
+    googletag.cmd.push(() => {
+      const rewardedSlot = googletag.defineOutOfPageSlot(
+        "22989534981/MB_Rewarded",
+        googletag.enums.OutOfPageFormat.REWARDED
+      );
+      if (rewardedSlot === null) return null;
+      rewardedSlot.addService(googletag.pubads());
+      googletag.enableServices();
+      googletag.pubads().addEventListener("rewardedSlotReady", function (evt) {
+        evt.makeRewardedVisible();
+      });
+      googletag.pubads().addEventListener("rewardedSlotGranted", function () {
+        if (x) {
+          const amt = parseInt(coins as string);
+          if (!isNaN(amt)) {
+            const numbers = amt + 100;
+            sessionStorage.setItem("amount", numbers.toString());
+          }
+          setX(false);
+        }
+      });
+      googletag.pubads().addEventListener("rewardedSlotClosed", function () {
+        googletag.destroySlots([rewardedSlot]);
+      });
+      googletag.display(rewardedSlot);
+    });
+  };
+
   return (
     <nav className="h-16 flex items-center justify-between w-full">
       <Link href={"/home"}>
@@ -17,7 +47,7 @@ const Navbar = () => {
           <div
             className="flex items-center gap-1 text-center px-2 cursor-pointer"
             id="claim-rew-time"
-            onClick={() => setX(false)}
+            onClick={getrewardad}
           >
             <Image
               src={"/gift.gif"}
