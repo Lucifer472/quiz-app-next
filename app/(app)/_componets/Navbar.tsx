@@ -3,6 +3,7 @@ import Logo from "@/components/logo/Logo";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [x, setX] = useState(true);
@@ -28,6 +29,7 @@ const Navbar = () => {
             sessionStorage.setItem("amount", numbers.toString());
           }
           setX(false);
+          toast("100 Coins Added successfully");
         }
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", function () {

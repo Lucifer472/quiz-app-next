@@ -58,8 +58,10 @@ const CheckHomepage = () => {
   }, []);
 
   useEffect(() => {
-    if (sessionStorage.getItem("time") === null) {
+    if (sessionStorage.getItem("amount") === null) {
       router.push("/");
+    } else if (pathname === "/") {
+      router.push("/home");
     }
   }, [pathname, router]);
   return <div></div>;

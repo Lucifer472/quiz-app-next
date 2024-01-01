@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -38,8 +37,8 @@ const LoginNumber = () => {
       >
         Get Code
       </button>
-      <Link
-        href={"/home"}
+      <button
+        onClick={handleClick}
         className="w-full flex items-center justify-center cursor-pointer"
       >
         <Image
@@ -49,7 +48,7 @@ const LoginNumber = () => {
           height={100}
           className="rounded-md"
         />
-      </Link>
+      </button>
     </div>
   );
 };

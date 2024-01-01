@@ -1,25 +1,13 @@
 "use client";
 
-import { X } from "lucide-react";
 import Image from "next/image";
+import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const Welcome = () => {
-  const [isFirst, setIsFirst] = useState(sessionStorage.getItem("time"));
-
   const router = useRouter();
 
   window.googletag = window.googletag || { cmd: [] };
-
-  const handleClose = () => {
-    sessionStorage.setItem("time", "2");
-    setIsFirst(sessionStorage.getItem("time"));
-  };
-
-  if (isFirst === "2") {
-    router.push("/home");
-  }
 
   const getrewardad = () => {
     googletag.cmd.push(() => {
@@ -54,11 +42,13 @@ const Welcome = () => {
   };
 
   return (
-    <div className="absolute w-full h-screen bg-[#020817] z-50 flex items-center justify-center">
-      <div className="relative flex bg-[#111827] border-2 border-white text-white flex-col justify-center items-center mx-4 p-4 xss:p-8 rounded-[1.5rem] w-full">
+    <div className="absolute w-full h-[1000px] bg-[#020817] z-50 flex items-center justify-center">
+      <div className="relative flex bg-[#111827] border-2 border-white text-white flex-col justify-center items-center mx-4 p-4 xss:p-8 rounded-[1.5rem] w-full max-w-[750px]">
         <button
           className="absolute top-0 right-0 m-4 text-white-500 hover:text-gray-700 focus:outline-none"
-          onClick={handleClose}
+          onClick={() => {
+            router.push("/home");
+          }}
         >
           <X />
         </button>

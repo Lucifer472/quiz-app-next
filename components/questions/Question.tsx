@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { question } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import Welcome from "@/components/questions/Welcome";
 
 interface QuestionProps {
   quesionArray: question[];
@@ -14,10 +15,9 @@ const Question = ({ quesionArray }: QuestionProps) => {
   const [question, setQuestion] = useState(quesionArray[index]);
   const [lock, setLock] = useState(false);
 
-  const [score, setScore] = useState(
-    //@ts-ignore
-    parseInt(sessionStorage.getItem("amount")) || 0
-  );
+  const [score, setScore] = useState<number>(0);
+
+  const [isWelcomed, setIsWelcomed] = useState(false);
 
   const router = useRouter();
   // Refrence
@@ -33,9 +33,22 @@ const Question = ({ quesionArray }: QuestionProps) => {
     setQuestion(quesionArray[index]);
   }, [index, quesionArray]);
 
-  useEffect(() => {
-    sessionStorage.setItem("amount", score.toString());
-  }, [score]);
+  const endGame = () => {
+    console.log(score);
+    let prevCoins = sessionStorage.getItem("amount");
+    if (prevCoins !== null) {
+      let coins = parseInt(prevCoins) + score;
+      sessionStorage.setItem("amount", coins.toString());
+      router.push("/home");
+    } else {
+      if (score < 0) {
+        sessionStorage.setItem("amount", "100");
+      } else {
+        sessionStorage.setItem("amount", score.toString());
+      }
+      setIsWelcomed(true);
+    }
+  };
 
   const handleClick = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -63,29 +76,17 @@ const Question = ({ quesionArray }: QuestionProps) => {
         optionArray[question.answer - 1].current.classList.remove(
           "bg-blue-400"
         );
-        setLock(false);
         if (quesionArray.length - 1 > index) {
           setIndex(index + 1);
-        } else if (sessionStorage.getItem("time") === null) {
-          if (score < 0) {
-            sessionStorage.setItem("amount", "100");
-          }
-          sessionStorage.setItem("time", "1");
-          router.push("/claim");
         } else {
-          router.push("/home");
+          endGame();
         }
+        setLock(false);
       }, 1000);
     }
   };
 
-  if (
-    sessionStorage.getItem("time") !== null &&
-    sessionStorage.getItem("time") === "2"
-  ) {
-    router.push("/home");
-    return <div></div>;
-  }
+  if (isWelcomed) return <Welcome />;
 
   return (
     <div className="flex items-center flex-col w-full gap-2">
