@@ -1,7 +1,7 @@
+import { getAllQuizCat } from "@/lib/getQuestions";
 import dynamic from "next/dynamic";
-import Script from "next/script";
 
-const Home = () => {
+const Home = async () => {
   const CategoryView = dynamic(() => import("../_componets/CategoryView"), {
     ssr: false,
   });
@@ -14,14 +14,15 @@ const Home = () => {
     ssr: false,
   });
 
+  const quiz = await getAllQuizCat();
+
   return (
     <div className="px-5 pt-[2rem] pb-16 flex flex-col w-full gap-6">
       <AdTop />
       <div>
         <CategoryView />
       </div>
-      <QuizView />
-      <Script src="/reward-ad.js" strategy="lazyOnload" />
+      <QuizView allQuiz={quiz} />
     </div>
   );
 };

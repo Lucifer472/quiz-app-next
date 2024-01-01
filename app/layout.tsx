@@ -38,9 +38,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ToastContainer />
-          <main className="max-w-screen-xss mx-auto px-2 xxs:px-1">
-            {children}
-          </main>
+          <main className="max-w-screen-xss mx-auto">{children}</main>
           <CheckHomepage />
         </ThemeProvider>
       </body>

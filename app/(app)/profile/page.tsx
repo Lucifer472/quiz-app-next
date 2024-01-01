@@ -42,7 +42,6 @@ const profile = () => {
         </Link>
       </div>
       <AdTop />
-      <Script src="/reward-ad.js" strategy="lazyOnload" />
     </div>
   );
 };

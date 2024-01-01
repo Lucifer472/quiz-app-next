@@ -1,4 +1,6 @@
 import db from "./db";
+import { quiz } from "@prisma/client";
+import { category } from "@/constant";
 
 export const getQuestionsStarter = async () => {
   const data = await db.question.findManyRandom(2, {
@@ -14,4 +16,30 @@ export const getQuestionsStarter = async () => {
     },
   });
   return data;
+};
+
+export const getAllQuizCat = async () => {
+  const quizzes = await Promise.all(
+    category.map(async (category) => {
+      if (category === "All") return null;
+      const quiz = await db.quiz.findFirst({
+        where: {
+          category: category,
+        },
+      });
+      return quiz;
+    })
+  );
+
+  return quizzes as quiz[];
+};
+
+export const getAllFromCat = async (cat: string) => {
+  const quizzes = await db.quiz.findMany({
+    where: {
+      category: cat,
+    },
+  });
+
+  return quizzes as quiz[];
 };

@@ -9,21 +9,18 @@ const CategoryView = () => {
   const router = useRouter();
 
   const handleScroll = (scrollValue: number) => {
-    // Get the current scroll position
     // @ts-ignore
     const currentScroll = scrollContainerRef.current.scrollLeft;
-
-    // Set the new scroll position
     // @ts-ignore
     scrollContainerRef.current.scrollLeft = currentScroll + scrollValue;
   };
 
   const onClick = (category: string) => {
     if (category === "All") {
-      router.replace("/home", undefined);
-      return null;
+      router.replace("/home");
+    } else {
+      router.replace(`/home/${category}`);
     }
-    router.replace(`?cat=${category}`);
   };
 
   return (
