@@ -8,6 +8,7 @@ const BannerAd = () => {
   window.googletag = window.googletag || { cmd: [] };
 
   const getrewardad = () => {
+    console.log("Trigger");
     googletag.cmd.push(() => {
       const rewardedSlot = googletag.defineOutOfPageSlot(
         "22989534981/MB_Rewarded",
@@ -20,7 +21,9 @@ const BannerAd = () => {
         evt.makeRewardedVisible();
       });
       googletag.pubads().addEventListener("rewardedSlotGranted", function () {
+        console.log("Trigger 2");
         let i = true;
+        console.log(i);
         if (i) {
           const amt = parseInt(sessionStorage.getItem("amount") as string);
           if (!isNaN(amt)) {
@@ -29,6 +32,7 @@ const BannerAd = () => {
           }
           i = false;
         }
+        console.log(i);
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", function () {
         googletag.destroySlots([rewardedSlot]);
