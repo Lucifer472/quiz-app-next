@@ -14,7 +14,7 @@ const Quiz = async ({ params }: { params: { id: string } }) => {
     <StartQuiz
       questions={question}
       quiz={quiz}
-      redirectUrl={`/quiz/${params.id}`}
+      redirectUrl={`/home/quiz/${params.id}`}
     />
   );
 };
