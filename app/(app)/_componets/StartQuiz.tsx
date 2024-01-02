@@ -31,6 +31,7 @@ const StartQuiz = ({ quiz, questions, redirectUrl }: startQuizProps) => {
     } else {
       return (
         <>
+          <AdTop />
           <Question quesionArray={questions} />
           <AdBottom />
         </>
@@ -93,6 +94,7 @@ const StartQuiz = ({ quiz, questions, redirectUrl }: startQuizProps) => {
           </li>
         </ul>
       </div>
+      <AdBottom />
     </>
   );
 };
