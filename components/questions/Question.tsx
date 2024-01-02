@@ -45,7 +45,7 @@ const Question = ({ quesionArray }: QuestionProps) => {
 
   const endGame = () => {
     let prevCoins = sessionStorage.getItem("amount");
-    if (prevCoins !== null) {
+    if (prevCoins) {
       setGameEnd(true);
     } else {
       if (score === 0) {

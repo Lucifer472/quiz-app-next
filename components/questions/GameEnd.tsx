@@ -11,10 +11,10 @@ const GameEnd = ({ score }: { score: number }) => {
   useEffect(() => {
     if (score === 0) {
       const isNull = addRemoveCoins(true, 50);
-      if (isNull) return router.push("/");
+      if (isNull === null) router.push("/");
     } else {
       const isNull = addRemoveCoins(true, score * 50);
-      if (isNull) return router.push("/");
+      if (isNull === null) router.push("/");
     }
   }, [router, score]);
 
