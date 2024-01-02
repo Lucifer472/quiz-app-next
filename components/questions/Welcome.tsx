@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import addRemoveCoins from "@/lib/AddRemoveCoins";
 
 const Welcome = () => {
   const router = useRouter();
@@ -24,14 +25,12 @@ const Welcome = () => {
       googletag.pubads().addEventListener("rewardedSlotGranted", function () {
         let i = true;
         if (i) {
-          const amt = parseInt(sessionStorage.getItem("amount") as string);
-          if (!isNaN(amt)) {
-            const numbers = amt + 100;
-            sessionStorage.setItem("amount", numbers.toString());
-          }
+          addRemoveCoins(true, 100);
           i = false;
+          setTimeout(() => {
+            router.push("/home");
+          }, 500);
         }
-        router.push("/home");
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", function () {
         googletag.destroySlots([rewardedSlot]);

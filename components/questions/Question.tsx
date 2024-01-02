@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Welcome from "@/components/questions/Welcome";
 import GameEnd from "./GameEnd";
+import addRemoveCoins from "@/lib/AddRemoveCoins";
 
 interface QuestionProps {
   quesionArray: question[];
@@ -36,12 +37,9 @@ const Question = ({ quesionArray }: QuestionProps) => {
   }, [index, quesionArray]);
 
   useEffect(() => {
-    let coins: string | null | number = sessionStorage.getItem("amount");
+    const coins = addRemoveCoins(false, 100);
     if (coins === null) {
-      router.push("/home");
-    } else {
-      coins = parseInt(coins as string) - 100;
-      sessionStorage.setItem("amount", coins.toString());
+      router.push("/");
     }
   }, []);
 
@@ -50,10 +48,10 @@ const Question = ({ quesionArray }: QuestionProps) => {
     if (prevCoins !== null) {
       setGameEnd(true);
     } else {
-      if (score < 0) {
+      if (score === 0) {
         sessionStorage.setItem("amount", "100");
       } else {
-        sessionStorage.setItem("amount", score.toString());
+        addRemoveCoins(true, score * 50);
       }
       setIsWelcomed(true);
     }
@@ -68,14 +66,13 @@ const Question = ({ quesionArray }: QuestionProps) => {
         // @ts-ignore
         e.target.classList.add("bg-blue-400");
         setLock(true);
-        setScore((prev) => prev + 50);
+        setScore((prev) => prev + 1);
       } else {
         // @ts-ignore
         e.target.classList.add("bg-red-400");
         // @ts-ignore
         optionArray[question.answer - 1].current.classList.add("bg-blue-400");
         setLock(true);
-        setScore((prev) => prev - 25);
       }
 
       setTimeout(() => {
@@ -87,10 +84,10 @@ const Question = ({ quesionArray }: QuestionProps) => {
         );
         if (quesionArray.length - 1 > index) {
           setIndex(index + 1);
+          setLock(false);
         } else {
           endGame();
         }
-        setLock(false);
       }, 1000);
     }
   };

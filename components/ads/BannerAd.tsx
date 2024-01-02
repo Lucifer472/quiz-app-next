@@ -1,6 +1,8 @@
 "use client";
+import addRemoveCoins from "@/lib/AddRemoveCoins";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 interface bannerAdsProps {
   amt: number;
@@ -28,12 +30,16 @@ const BannerAd = ({ amt, redirectUrl }: bannerAdsProps) => {
       googletag.pubads().addEventListener("rewardedSlotGranted", function () {
         let i = true;
         if (i) {
-          const amountToStore = amt + 100;
-          sessionStorage.setItem("amount", amountToStore.toString());
-          i = false;
-          setTimeout(() => {
-            router.push(redirectUrl);
-          }, 500);
+          const newAmount = addRemoveCoins(true, 100);
+          if (newAmount === null) {
+            toast("An Error Occured");
+          } else {
+            i = false;
+            setTimeout(() => {
+              toast("100 Coins Added successfully");
+              router.push(redirectUrl);
+            }, 500);
+          }
         }
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", function () {

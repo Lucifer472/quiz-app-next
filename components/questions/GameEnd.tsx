@@ -3,21 +3,18 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import addRemoveCoins from "@/lib/AddRemoveCoins";
 
 const GameEnd = ({ score }: { score: number }) => {
   const router = useRouter();
 
   useEffect(() => {
-    let amount: any = sessionStorage.getItem("amount");
-    if (amount === null) router.push("/home");
-    else {
-      if (score < 0) {
-        amount = parseInt(amount) + 50;
-      } else {
-        amount = parseInt(amount) + score;
-      }
-
-      sessionStorage.setItem("amount", amount);
+    if (score === 0) {
+      const isNull = addRemoveCoins(true, 50);
+      if (isNull) return router.push("/");
+    } else {
+      const isNull = addRemoveCoins(true, score * 50);
+      if (isNull) return router.push("/");
     }
   }, [router, score]);
 
@@ -37,13 +34,13 @@ const GameEnd = ({ score }: { score: number }) => {
         <div className="flex flex-col gap-2  border border-border rounded-full py-2 cursor-pointer w-48 bg-transparent">
           <div className="text-white text-center flex flex-col ">
             <span>{score}</span>
-            <span> Your Score</span>
+            <span>Correct Answers</span>
           </div>
         </div>
         <div className="flex flex-col gap-2  border border-border rounded-full py-2 cursor-pointer w-48 bg-transparent">
           <div className="text-white text-center flex flex-col ">
             <span>{score < 0 ? "50" : score}</span>
-            <span> Coins Earned</span>
+            <span>Coins Earned</span>
           </div>
         </div>
       </div>

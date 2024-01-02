@@ -1,10 +1,11 @@
 "use client";
-import Logo from "@/components/logo/Logo";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Logo from "@/components/logo/Logo";
+import addRemoveCoins from "@/lib/AddRemoveCoins";
 
 const Navbar = () => {
   const [x, setX] = useState(true);
@@ -30,13 +31,8 @@ const Navbar = () => {
       });
       googletag.pubads().addEventListener("rewardedSlotGranted", function () {
         if (x) {
-          const amt = parseInt(coins as string);
-          if (!isNaN(amt)) {
-            const numbers = amt + 100;
-            sessionStorage.setItem("amount", numbers.toString());
-            setCoins(sessionStorage.getItem("amount"));
-            toast("100 Coins Added successfully");
-          }
+          addRemoveCoins(true, 100);
+          toast("100 Coins Added successfully");
           setX(false);
         }
       });
