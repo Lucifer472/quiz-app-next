@@ -2,7 +2,12 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const BannerAd = () => {
+interface bannerAdsProps {
+  amt: number;
+  redirectUrl: string;
+}
+
+const BannerAd = ({ amt, redirectUrl }: bannerAdsProps) => {
   const router = useRouter();
 
   window.googletag = window.googletag || { cmd: [] };
@@ -21,18 +26,15 @@ const BannerAd = () => {
         evt.makeRewardedVisible();
       });
       googletag.pubads().addEventListener("rewardedSlotGranted", function () {
-        console.log("Trigger 2");
         let i = true;
-        console.log(i);
         if (i) {
-          const amt = parseInt(sessionStorage.getItem("amount") as string);
-          if (!isNaN(amt)) {
-            const numbers = amt + 100;
-            sessionStorage.setItem("amount", numbers.toString());
-          }
+          const amountToStore = amt + 100;
+          sessionStorage.setItem("amount", amountToStore.toString());
           i = false;
+          setTimeout(() => {
+            router.push(redirectUrl);
+          }, 500);
         }
-        console.log(i);
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", function () {
         googletag.destroySlots([rewardedSlot]);

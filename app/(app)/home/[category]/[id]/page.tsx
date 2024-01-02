@@ -10,7 +10,13 @@ const Quiz = async ({ params }: { params: { id: string } }) => {
     ssr: false,
   });
 
-  return <StartQuiz questions={question} quiz={quiz} />;
+  return (
+    <StartQuiz
+      questions={question}
+      quiz={quiz}
+      redirectUrl={`/quiz/${params.id}`}
+    />
+  );
 };
 
 export default Quiz;

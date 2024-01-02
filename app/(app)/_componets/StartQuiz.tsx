@@ -14,9 +14,10 @@ import BannerAd from "@/components/ads/BannerAd";
 interface startQuizProps {
   quiz: quiz;
   questions: question[];
+  redirectUrl: string;
 }
 
-const StartQuiz = ({ quiz, questions }: startQuizProps) => {
+const StartQuiz = ({ quiz, questions, redirectUrl }: startQuizProps) => {
   const [start, setStart] = useState(false);
   const coins = sessionStorage.getItem("amount");
 
@@ -24,9 +25,9 @@ const StartQuiz = ({ quiz, questions }: startQuizProps) => {
 
   if (start) {
     if (coins === null) router.push("/");
-    if (parseFloat(coins as string) < 99) {
-      console.log(coins);
-      return <BannerAd />;
+    let amount = parseInt(coins as string);
+    if (amount < 99) {
+      return <BannerAd amt={amount} redirectUrl={redirectUrl} />;
     } else {
       return (
         <>
