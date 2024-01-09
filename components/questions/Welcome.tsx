@@ -40,7 +40,7 @@ const Welcome = () => {
   };
 
   return (
-    <div className="absolute w-full h-[1000px] bg-[#020817] z-50 flex items-center justify-center">
+    <div className="absolute top-0 w-full h-[1000px] bg-[#020817] z-50 flex items-center justify-center">
       <div className="relative flex bg-[#111827] border-2 border-white text-white flex-col justify-center items-center mx-4 p-4 xss:p-8 rounded-[1.5rem] w-full max-w-[750px]">
         <button
           className="absolute top-0 right-0 m-4 text-white-500 hover:text-gray-700 focus:outline-none"

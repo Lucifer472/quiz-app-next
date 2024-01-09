@@ -64,23 +64,23 @@ const Question = ({ quesionArray }: QuestionProps) => {
     if (!lock) {
       if (optionNumber === question.answer) {
         // @ts-ignore
-        e.target.classList.add("bg-blue-400");
+        e.target.classList.add("bg-blue-600");
         setLock(true);
         setScore((prev) => prev + 1);
       } else {
         // @ts-ignore
-        e.target.classList.add("bg-red-400");
+        e.target.classList.add("bg-red-600");
         // @ts-ignore
-        optionArray[question.answer - 1].current.classList.add("bg-blue-400");
+        optionArray[question.answer - 1].current.classList.add("bg-blue-600");
         setLock(true);
       }
 
       setTimeout(() => {
         // @ts-ignore
-        e.target.classList.remove("bg-blue-400", "bg-red-400");
+        e.target.classList.remove("bg-blue-600", "bg-red-600");
         // @ts-ignore
         optionArray[question.answer - 1].current.classList.remove(
-          "bg-blue-400"
+          "bg-blue-600"
         );
         if (quesionArray.length - 1 > index) {
           setIndex(index + 1);
