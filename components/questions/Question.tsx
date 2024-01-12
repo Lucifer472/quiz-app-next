@@ -94,10 +94,12 @@ const Question = ({ quesionArray }: QuestionProps) => {
 
   if (gameEnd) return <GameEnd score={score} />;
 
-  if (isWelcomed) return <Welcome />;
-
   return (
     <div className="flex items-center flex-col w-full gap-2">
+      {isWelcomed && <Welcome />}
+      {isWelcomed && (
+        <div className="absolute w-full h-full min-h-[1000px] top-0 left-0 bg-black/30 " />
+      )}
       <span className="text-[#bac8ff] font-bold">
         Question {index + 1 + "/" + quesionArray.length}
       </span>
