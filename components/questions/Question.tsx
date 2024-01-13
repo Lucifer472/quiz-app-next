@@ -37,9 +37,11 @@ const Question = ({ quesionArray }: QuestionProps) => {
   }, [index, quesionArray]);
 
   useEffect(() => {
-    const coins = addRemoveCoins(false, 100);
-    if (coins === null) {
-      router.push("/");
+    if (!sessionStorage.getItem("amount") === null) {
+      const coins = addRemoveCoins(false, 100);
+      if (coins === null) {
+        router.push("/");
+      }
     }
   }, []);
 

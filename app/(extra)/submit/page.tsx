@@ -18,7 +18,7 @@ const SubmitPage = () => {
     <section className="flex flex-col items-center justify-center gap-8 w-full">
       <AdTop />
       <Link
-        href={"/"}
+        href={"/home"}
         className="flex flex-col w-full bg-[rgb(31,41,55)] rounded-md relative max-w-[430px]"
       >
         <div className="p-3 flex gap-x-2 items-center justify-evenly ">
