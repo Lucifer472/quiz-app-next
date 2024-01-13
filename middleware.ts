@@ -6,11 +6,11 @@ export const middleware = (request: NextRequest) => {
 
   const cookie = request.cookies.get("isFirst");
 
-  if (!cookie && nextUrl.pathname === "/") {
-    return NextResponse.redirect(new URL("/start", nextUrl));
+  if (cookie && nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL("/home", nextUrl));
   }
 
-  if (cookie && nextUrl.pathname === "/start") {
+  if (!cookie && nextUrl.pathname === "/home") {
     return NextResponse.redirect(new URL("/", nextUrl));
   }
 
