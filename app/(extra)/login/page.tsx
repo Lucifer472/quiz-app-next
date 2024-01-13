@@ -3,10 +3,18 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import LoginNumber from "../_components/LoginNumber";
 import Facts from "@/components/fact/Facts";
+import dynamic from "next/dynamic";
 
 const Login = () => {
+  const AdTop = dynamic(() => import("@/components/ads/Ad-Submit"), {
+    ssr: false,
+  });
+  const AdBottom = dynamic(() => import("@/components/ads/Ad-Win"), {
+    ssr: false,
+  });
   return (
     <div className="flex flex-col items-center justify-center w-full gap-2">
+      <AdTop />
       <div className="w-full flex px-3 py-4 items-center gap-2 mb-5">
         <Link href={"/home"}>
           <ChevronLeft />
@@ -20,6 +28,7 @@ const Login = () => {
         </div>
       </div>
       <LoginNumber />
+      <AdBottom />
       <Facts />
     </div>
   );

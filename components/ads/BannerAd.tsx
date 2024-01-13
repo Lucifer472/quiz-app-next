@@ -15,7 +15,6 @@ const BannerAd = ({ amt, redirectUrl }: bannerAdsProps) => {
   window.googletag = window.googletag || { cmd: [] };
 
   const getrewardad = () => {
-    console.log("Trigger");
     googletag.cmd.push(() => {
       const rewardedSlot = googletag.defineOutOfPageSlot(
         "22989534981/MB_Rewarded",

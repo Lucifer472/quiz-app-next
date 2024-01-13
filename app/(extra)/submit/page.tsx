@@ -11,7 +11,7 @@ const poppins = Poppins({
 });
 
 const SubmitPage = () => {
-  const AdTop = dynamic(() => import("@/components/ads/Ad-Question"), {
+  const AdTop = dynamic(() => import("@/components/ads/Ad-Submit"), {
     ssr: false,
   });
   return (

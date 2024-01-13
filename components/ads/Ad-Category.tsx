@@ -1,7 +1,8 @@
 "use client";
-import LoadScript from "@/lib/load";
-import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+
+import LoadScript from "@/lib/load";
 
 const AdTop = () => {
   const pathname = usePathname();
@@ -17,14 +18,14 @@ const AdTop = () => {
     loadAds().then(() => {
       googletag.cmd.push(function () {
         sl = googletag.defineSlot(
-          "/22989534981/DG_7_336X280",
+          "/22989534981/DG_2_336X280",
           [336, 280],
-          "div-gpt-ad-1700655338779-0"
+          "div-gpt-ad-1705141713649-0"
         );
         if (sl !== null) sl.addService(googletag.pubads());
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
-        googletag.display("div-gpt-ad-1700655338779-0");
+        googletag.display("div-gpt-ad-1705141713649-0");
       });
     });
     return () => {
@@ -38,12 +39,13 @@ const AdTop = () => {
   }, [pathname]);
 
   return (
-    <>
+    <div className="text-center text-white">
+      <span className="text-xs">SPONSORED</span>
       <div
-        id="div-gpt-ad-1700655338779-0"
+        id="div-gpt-ad-1705141713649-0"
         style={{ minWidth: "336px", minHeight: "280px" }}
       ></div>
-    </>
+    </div>
   );
 };
 

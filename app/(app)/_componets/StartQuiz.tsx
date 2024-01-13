@@ -4,12 +4,11 @@ import { useState } from "react";
 import { question, quiz } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import AdTop from "@/components/ads/Ad-Category";
-import AdBottom from "@/components/ads/Ad-Question";
 import Coin from "@/components/logo/Coin";
 import { icons } from "@/constant";
 import Question from "@/components/questions/Question";
 import BannerAd from "@/components/ads/BannerAd";
+import dynamic from "next/dynamic";
 
 interface startQuizProps {
   quiz: quiz;
@@ -22,6 +21,14 @@ const StartQuiz = ({ quiz, questions, redirectUrl }: startQuizProps) => {
   const coins = sessionStorage.getItem("amount");
 
   const router = useRouter();
+
+  const AdTop = dynamic(() => import("@/components/ads/Ad-Question"), {
+    ssr: false,
+  });
+
+  const AdBottom = dynamic(() => import("@/components/ads/Ad-Win"), {
+    ssr: false,
+  });
 
   if (start) {
     if (coins === null) router.push("/");

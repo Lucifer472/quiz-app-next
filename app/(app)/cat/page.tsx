@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 
 const Cat = () => {
-  const AdTop = dynamic(() => import("@/components/ads/Ad-Category"), {
+  const AdTop = dynamic(() => import("@/components/ads/Ad-Home"), {
     ssr: false,
   });
 

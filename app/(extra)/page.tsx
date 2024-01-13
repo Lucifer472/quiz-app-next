@@ -16,7 +16,7 @@ const Home = async () => {
     ssr: false,
   });
 
-  const AdTop = dynamic(() => import("@/components/ads/Ad-Question"), {
+  const AdTop = dynamic(() => import("@/components/ads/Ad-Home"), {
     ssr: false,
   });
 
