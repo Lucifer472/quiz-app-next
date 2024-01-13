@@ -40,7 +40,7 @@ const StartQuiz = ({ quiz, questions, redirectUrl }: startQuizProps) => {
   }, []);
 
   if (start) {
-    if (coins === null) router.push("/");
+    if (coins === null) router.push("/home");
     let amount = parseInt(coins as string);
     if (amount < 99) {
       return <BannerAd redirectUrl={redirectUrl} />;

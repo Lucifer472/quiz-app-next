@@ -13,7 +13,7 @@ const GameEnd = ({ score }: { score: number }) => {
     if (score === 0) {
       addCoins(50);
     } else {
-      addCoins(100);
+      addCoins(score * 50);
     }
   }, [score]);
 
