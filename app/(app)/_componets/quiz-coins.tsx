@@ -1,16 +1,19 @@
 "use client";
 
+import { getCoins } from "@/action/actions";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const QuizAndCoinBtn = () => {
-  const [coins, setCoins] = useState<number>(0);
+  const [coins, setCoins] = useState<string | null>("0");
   const router = useRouter();
 
   useEffect(() => {
-    const prevCoins = sessionStorage.getItem("amount");
-    if (prevCoins === null) router.push("/");
-    setCoins(parseInt(prevCoins as string));
+    getCoins().then((res) => {
+      if (res) {
+        setCoins(res);
+      }
+    });
   }, [router]);
 
   return (
@@ -20,12 +23,8 @@ const QuizAndCoinBtn = () => {
         <div className="text-lg">{coins}</div>
       </div>
       <div className="w-[150px] py-2 px-4 rounded-full border-2 flex  items-center justify-between">
-        <div className="text-sm">Coins</div>
-        <div className="text-lg">
-          {sessionStorage.getItem("quiz") === null
-            ? "0"
-            : sessionStorage.getItem("quiz")}
-        </div>
+        <div className="text-sm">Quiz</div>
+        <div className="text-lg">1</div>
       </div>
     </div>
   );

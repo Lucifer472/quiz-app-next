@@ -5,19 +5,24 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Logo from "@/components/logo/Logo";
-import addRemoveCoins from "@/lib/AddRemoveCoins";
+import { addCoins, getCoins } from "@/action/actions";
 
 const Navbar = () => {
-  const [x, setX] = useState(true);
-  const [coins, setCoins] = useState(sessionStorage.getItem("amount"));
+  const [x, setX] = useState(false);
+  const [coins, setCoins] = useState("0");
 
   const pathname = usePathname();
 
   useEffect(() => {
-    setCoins(sessionStorage.getItem("amount"));
+    getCoins().then((res) => {
+      if (res) {
+        setCoins(res);
+      }
+    });
   }, [pathname]);
 
   const getrewardad = () => {
+    setX(true);
     googletag.cmd.push(() => {
       const rewardedSlot = googletag.defineOutOfPageSlot(
         "22989534981/MB_Rewarded",
@@ -30,11 +35,13 @@ const Navbar = () => {
         evt.makeRewardedVisible();
       });
       googletag.pubads().addEventListener("rewardedSlotGranted", function () {
-        if (x) {
-          addRemoveCoins(true, 100);
-          toast("100 Coins Added successfully");
-          setX(false);
-        }
+        addCoins(100).then((res) => {
+          if (res) {
+            toast("100 Coins Added successfully");
+          } else {
+            toast("An Error Occured");
+          }
+        });
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", function () {
         googletag.destroySlots([rewardedSlot]);
@@ -49,7 +56,7 @@ const Navbar = () => {
         <Logo />
       </Link>
       <div className="w-full flex items-center justify-end">
-        {x && (
+        {!x && (
           <div
             className="flex items-center gap-1 text-center px-2 cursor-pointer"
             id="claim-rew-time"

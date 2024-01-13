@@ -3,14 +3,17 @@
 import Image from "next/image";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import addRemoveCoins from "@/lib/AddRemoveCoins";
+import { addCoins } from "@/action/actions";
+import { useState } from "react";
 
 const Welcome = () => {
   const router = useRouter();
+  const [btn, setBtn] = useState(false);
 
   window.googletag = window.googletag || { cmd: [] };
 
   const getrewardad = () => {
+    setBtn(true);
     googletag.cmd.push(() => {
       const rewardedSlot = googletag.defineOutOfPageSlot(
         "22989534981/MB_Rewarded",
@@ -26,14 +29,9 @@ const Welcome = () => {
         evt.makeRewardedVisible();
       });
       googletag.pubads().addEventListener("rewardedSlotGranted", function () {
-        let i = true;
-        if (i) {
-          addRemoveCoins(true, 100);
-          i = false;
-          setTimeout(() => {
-            router.push("/submit");
-          }, 500);
-        }
+        addCoins(100).then(() => {
+          router.push("/home");
+        });
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", function () {
         googletag.destroySlots([rewardedSlot]);
@@ -46,6 +44,7 @@ const Welcome = () => {
     <div className="absolute top-0 w-full h-full bg-transparent z-50 flex items-center justify-center">
       <div className="relative flex bg-[#111827] border-2 border-white text-white flex-col justify-center items-center mx-4 p-4 xss:p-8 rounded-[1.5rem] w-full max-w-[750px]">
         <button
+          disabled={btn}
           className="absolute top-0 right-0 m-4 text-white-500 hover:text-gray-700 focus:outline-none"
           onClick={getrewardad}
         >
@@ -60,6 +59,7 @@ const Welcome = () => {
           Watch a simple ad and get rewarded
         </p>
         <button
+          disabled={btn}
           onClick={getrewardad}
           className="bg-[#D8E91E] w-full rounded-[1.5rem] text-black font-bold py-4 px-4 mr-2 "
           style={{

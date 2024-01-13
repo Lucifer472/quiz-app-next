@@ -1,20 +1,22 @@
 "use client";
-import addRemoveCoins from "@/lib/AddRemoveCoins";
+import { addCoins } from "@/action/actions";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 interface bannerAdsProps {
-  amt: number;
   redirectUrl: string;
 }
 
-const BannerAd = ({ amt, redirectUrl }: bannerAdsProps) => {
+const BannerAd = ({ redirectUrl }: bannerAdsProps) => {
+  const [btn, setBtn] = useState(false);
   const router = useRouter();
 
   window.googletag = window.googletag || { cmd: [] };
 
   const getrewardad = () => {
+    setBtn(true);
     googletag.cmd.push(() => {
       const rewardedSlot = googletag.defineOutOfPageSlot(
         "22989534981/MB_Rewarded",
@@ -27,19 +29,16 @@ const BannerAd = ({ amt, redirectUrl }: bannerAdsProps) => {
         evt.makeRewardedVisible();
       });
       googletag.pubads().addEventListener("rewardedSlotGranted", function () {
-        let i = true;
-        if (i) {
-          const newAmount = addRemoveCoins(true, 100);
-          if (newAmount === null) {
+        addCoins(100).then((res) => {
+          if (res === null) {
             toast("An Error Occured");
           } else {
-            i = false;
             setTimeout(() => {
               toast("100 Coins Added successfully");
               router.push(redirectUrl);
             }, 500);
           }
-        }
+        });
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", function () {
         googletag.destroySlots([rewardedSlot]);
@@ -75,6 +74,7 @@ const BannerAd = ({ amt, redirectUrl }: bannerAdsProps) => {
         <h2 className="text-4xl text-[#D8E91E] md:text-[1.5rem] mb-4">oops!</h2>
         <p className="mb-6 text-[#8E8F98]">Not enough coins to play</p>
         <button
+          disabled={btn}
           onClick={getrewardad}
           className="bg-[#D8E91E]   md:w-[100%] w-[50%] rounded-[1.5rem] text-black font-bold py-4 px-4 mr-2"
         >

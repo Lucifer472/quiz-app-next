@@ -1,13 +1,9 @@
 "use client";
-
-import LoadScript from "@/lib/load";
-import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-const CheckHomepage = () => {
-  const router = useRouter();
-  const pathname = usePathname();
+import LoadScript from "@/lib/load";
 
+const CheckHomepage = () => {
   useEffect(() => {
     const loadScript = async () => {
       LoadScript(() => {
@@ -57,13 +53,6 @@ const CheckHomepage = () => {
     });
   }, []);
 
-  useEffect(() => {
-    if (sessionStorage.getItem("amount") === null) {
-      router.push("/");
-    } else if (pathname === "/") {
-      router.push("/home");
-    }
-  }, [pathname, router]);
   return <div></div>;
 };
 

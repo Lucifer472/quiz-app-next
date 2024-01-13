@@ -3,20 +3,19 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import addRemoveCoins from "@/lib/AddRemoveCoins";
+
+import { addCoins } from "@/action/actions";
 
 const GameEnd = ({ score }: { score: number }) => {
   const router = useRouter();
 
   useEffect(() => {
     if (score === 0) {
-      const isNull = addRemoveCoins(true, 50);
-      if (isNull === null) router.push("/");
+      addCoins(50);
     } else {
-      const isNull = addRemoveCoins(true, score * 50);
-      if (isNull === null) router.push("/");
+      addCoins(100);
     }
-  }, [router, score]);
+  }, [score]);
 
   return (
     <>

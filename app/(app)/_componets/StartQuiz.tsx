@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { question, quiz } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -9,6 +9,7 @@ import { icons } from "@/constant";
 import Question from "@/components/questions/Question";
 import BannerAd from "@/components/ads/BannerAd";
 import dynamic from "next/dynamic";
+import { getCoins } from "@/action/actions";
 
 interface startQuizProps {
   quiz: quiz;
@@ -18,7 +19,7 @@ interface startQuizProps {
 
 const StartQuiz = ({ quiz, questions, redirectUrl }: startQuizProps) => {
   const [start, setStart] = useState(false);
-  const coins = sessionStorage.getItem("amount");
+  const [coins, setCoins] = useState<string | null>(null);
 
   const router = useRouter();
 
@@ -30,11 +31,19 @@ const StartQuiz = ({ quiz, questions, redirectUrl }: startQuizProps) => {
     ssr: false,
   });
 
+  useEffect(() => {
+    getCoins().then((res) => {
+      if (res) {
+        setCoins(res);
+      }
+    });
+  }, []);
+
   if (start) {
     if (coins === null) router.push("/");
     let amount = parseInt(coins as string);
     if (amount < 99) {
-      return <BannerAd amt={amount} redirectUrl={redirectUrl} />;
+      return <BannerAd redirectUrl={redirectUrl} />;
     } else {
       return (
         <>

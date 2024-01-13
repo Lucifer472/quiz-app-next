@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Welcome from "@/components/questions/Welcome";
 import GameEnd from "./GameEnd";
-import addRemoveCoins from "@/lib/AddRemoveCoins";
+
+import { addCoins, isUser, removeCoins } from "@/action/actions";
 
 interface QuestionProps {
   quesionArray: question[];
@@ -37,26 +38,27 @@ const Question = ({ quesionArray }: QuestionProps) => {
   }, [index, quesionArray]);
 
   useEffect(() => {
-    if (!sessionStorage.getItem("amount") === null) {
-      const coins = addRemoveCoins(false, 100);
-      if (coins === null) {
-        router.push("/");
+    isUser().then((res) => {
+      if (res) {
+        removeCoins(100).then((res) => {
+          if (res === null) {
+            router.push("/");
+          }
+        });
       }
-    }
+    });
   }, []);
 
   const endGame = () => {
-    let prevCoins = sessionStorage.getItem("amount");
-    if (prevCoins) {
-      setGameEnd(true);
-    } else {
-      if (score === 0) {
-        sessionStorage.setItem("amount", "100");
+    isUser().then((res) => {
+      if (res) {
+        setGameEnd(true);
       } else {
-        addRemoveCoins(true, score * 50);
+        addCoins(100).then((res) => {
+          router.push("/submit");
+        });
       }
-      setIsWelcomed(true);
-    }
+    });
   };
 
   const handleClick = (
