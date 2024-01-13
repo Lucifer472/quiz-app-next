@@ -30,7 +30,7 @@ const Welcome = () => {
       });
       googletag.pubads().addEventListener("rewardedSlotGranted", function () {
         addCoins(100).then(() => {
-          router.push("/home");
+          router.push("/submit");
         });
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", function () {

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Welcome from "@/components/questions/Welcome";
 import GameEnd from "./GameEnd";
 
-import { addCoins, isUser, removeCoins } from "@/action/actions";
+import { addCoins, isUser, removeCoins, setIsNewUser } from "@/action/actions";
 
 interface QuestionProps {
   quesionArray: question[];
@@ -55,7 +55,9 @@ const Question = ({ quesionArray }: QuestionProps) => {
         setGameEnd(true);
       } else {
         addCoins(100).then((res) => {
-          router.push("/submit");
+          setIsNewUser().then(() => {
+            setIsWelcomed(true);
+          });
         });
       }
     });
