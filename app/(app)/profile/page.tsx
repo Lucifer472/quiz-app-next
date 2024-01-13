@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 
 const profile = () => {
   const AdTop = dynamic(() => import("@/components/ads/Ad-Category"), {

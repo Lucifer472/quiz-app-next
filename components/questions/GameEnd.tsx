@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import addRemoveCoins from "@/lib/AddRemoveCoins";
-import AdTop from "../ads/Ad-Category";
 
 const GameEnd = ({ score }: { score: number }) => {
   const router = useRouter();
@@ -21,7 +20,6 @@ const GameEnd = ({ score }: { score: number }) => {
 
   return (
     <>
-      <AdTop />
       <div className="flex gap-2 items-center px-5 flex-col">
         <div className="flex justify-center items-center relative w-[250px]">
           <Image
