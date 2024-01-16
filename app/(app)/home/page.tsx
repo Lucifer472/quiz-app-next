@@ -17,7 +17,7 @@ const Home = async () => {
   const quiz = await getAllQuizCat();
 
   return (
-    <div className="px-5 pt-[2rem] pb-16 flex flex-col w-full gap-6">
+    <div className="px-5 pt-1 pb-16 flex flex-col w-full gap-6">
       <AdTop />
       <div>
         <CategoryView />
