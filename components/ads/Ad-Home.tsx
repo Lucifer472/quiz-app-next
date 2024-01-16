@@ -43,7 +43,7 @@ const AdTop = () => {
       <span className="text-xs">SPONSORED</span>
       <div
         id="div-gpt-ad-1705382584405-0"
-        style={{ minWidth: "336px", minHeight: "280px", background: "#fff" }}
+        style={{ minWidth: "336px", minHeight: "280px" }}
       ></div>
     </div>
   );
