@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const StartLayout = ({ children }: { children: React.ReactNode }) => {
-  return { children };
+  return children;
 };
 
 export default StartLayout;
