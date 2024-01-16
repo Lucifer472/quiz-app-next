@@ -17,12 +17,12 @@ const SubmitPage = () => {
   return (
     <section className="flex flex-col items-center justify-center gap-8 w-full">
       <AdTop />
-      <Link
-        href={"/home"}
-        className="flex flex-col w-full bg-[rgb(31,41,55)] rounded-md relative max-w-[430px]"
-      >
+      <div className="flex flex-col w-full bg-[rgb(31,41,55)] rounded-md relative max-w-[430px]">
         <div className="p-3 flex gap-x-2 items-center justify-evenly ">
-          <div className="flex flex-col items-center gap-y-1">
+          <Link
+            href={"/home/quiz/5"}
+            className="flex flex-col items-center gap-y-1"
+          >
             <span className="text-white">Fun Quiz</span>
             <Image
               src={`/icons/science.png`}
@@ -31,8 +31,11 @@ const SubmitPage = () => {
               height={100}
               className="rounded-md"
             />
-          </div>
-          <div className="flex flex-col items-center gap-y-1">
+          </Link>
+          <Link
+            href={"/home/quiz/1"}
+            className="flex flex-col items-center gap-y-1"
+          >
             <span className="text-white">Math Quiz</span>
             <Image
               src={`/icons/math.png`}
@@ -41,8 +44,11 @@ const SubmitPage = () => {
               height={100}
               className="rounded-md"
             />
-          </div>
-          <div className="flex flex-col items-center gap-y-1">
+          </Link>
+          <Link
+            href={"/home/quiz/2"}
+            className="flex flex-col items-center gap-y-1"
+          >
             <span className="text-white">Car Quiz</span>
             <Image
               src={`/icons/auto.png`}
@@ -51,20 +57,21 @@ const SubmitPage = () => {
               height={100}
               className="rounded-md"
             />
-          </div>
+          </Link>
         </div>
         <div className="w-full h-[1px] bg-gray-300" />
         <div className="px-4 py-2 flex items-center justify-between w-full">
-          <div
+          <Link
+            href={"/home"}
             className={cn(
               "px-6 py-2 bg-blue-500 text-white font-medium rounded-full text-2xl w-full text-center",
               poppins.className
             )}
           >
             PLAY
-          </div>
+          </Link>
         </div>
-      </Link>
+      </div>
       <Facts />
     </section>
   );

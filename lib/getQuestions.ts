@@ -4,6 +4,9 @@ import { category } from "@/constant";
 
 export const getQuestionsStarter = async () => {
   const data = await db.question.findManyRandom(2, {
+    where: {
+      quizId: 10,
+    },
     select: {
       id: true,
       question: true,

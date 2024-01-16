@@ -21,7 +21,7 @@ const Home = async () => {
   });
 
   return (
-    <section className="flex flex-col items-center justify-center gap-8 w-full">
+    <section className="flex flex-col items-center justify-center gap-4 w-full">
       <AdTop />
       <div className="flex flex-col items-center gap-1">
         <h1 className="text-center font-bold text-18">Let&apos;s begin!</h1>
