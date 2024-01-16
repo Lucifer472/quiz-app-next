@@ -18,14 +18,14 @@ const AdTop = () => {
     loadAds().then(() => {
       googletag.cmd.push(function () {
         sl = googletag.defineSlot(
-          "/22989534981/DG_5_336X280",
+          "/22989534981/QDG_5_336X280",
           [336, 280],
-          "div-gpt-ad-1705141872175-0"
+          "div-gpt-ad-1705382679779-0"
         );
         if (sl !== null) sl.addService(googletag.pubads());
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
-        googletag.display("div-gpt-ad-1705141872175-0");
+        googletag.display("div-gpt-ad-1705382679779-0");
       });
     });
     return () => {
@@ -42,7 +42,7 @@ const AdTop = () => {
     <div className="text-center text-white">
       <span className="text-xs">SPONSORED</span>
       <div
-        id="div-gpt-ad-1705141872175-0"
+        id="div-gpt-ad-1705382679779-0"
         style={{ minWidth: "336px", minHeight: "280px" }}
       ></div>
     </div>

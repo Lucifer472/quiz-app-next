@@ -69,7 +69,7 @@ const Navbar = () => {
               height={25}
               className="object-contain"
             />
-            <span className="text-white text-sm max-w-[60px] text-center ">
+            <span className="text-white text-sm max-w-[60px] text-center">
               Daily Rewards
             </span>
           </div>

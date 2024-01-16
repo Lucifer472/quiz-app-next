@@ -35,6 +35,7 @@ const Welcome = () => {
       });
       googletag.pubads().addEventListener("rewardedSlotClosed", function () {
         googletag.destroySlots([rewardedSlot]);
+        router.push("/submit");
       });
       googletag.display(rewardedSlot);
     });
