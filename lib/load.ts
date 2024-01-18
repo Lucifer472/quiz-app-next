@@ -13,7 +13,7 @@ const LoadScript = (callback: () => void) => {
     script.id = "googleAdSense";
     script.setAttribute("data-ad-frequency-hint", "30s");
     script.async = true;
-    document.body.appendChild(script);
+    document.head.appendChild(script);
     script.onload = () => {
       if (callback) callback();
     };

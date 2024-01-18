@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import dynamic from "next/dynamic";
 
 // custom imports
-import { ThemeProvider } from "@/components/theme-provider";
 import { ToastContainer } from "react-toastify";
 
 // css import
@@ -30,6 +29,10 @@ export default function RootLayout({
       ssr: false,
     }
   );
+
+  const ThemeProvider = dynamic(() => import("@/components/theme-provider"), {
+    ssr: false,
+  });
 
   return (
     <html lang="en">

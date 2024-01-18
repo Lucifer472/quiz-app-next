@@ -20,8 +20,13 @@ const Home = async () => {
     ssr: false,
   });
 
+  const AdPop = dynamic(() => import("@/components/ads/Ad-Pop"), {
+    ssr: false,
+  });
+
   return (
-    <section className="flex flex-col items-center justify-center gap-4 w-full">
+    <section className="flex flex-col items-center justify-center gap-4 w-full relative h-full">
+      <AdPop />
       <AdTop />
       <div className="flex flex-col items-center gap-1">
         <h1 className="text-center font-bold text-18">Let&apos;s begin!</h1>
