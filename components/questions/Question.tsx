@@ -25,6 +25,8 @@ const Question = ({ quesionArray }: QuestionProps) => {
   const [isWelcomed, setIsWelcomed] = useState(false);
   const [gameEnd, setGameEnd] = useState(false);
 
+  const [user, setIsUser] = useState(false);
+
   const router = useRouter();
   // Refrence
 
@@ -41,6 +43,8 @@ const Question = ({ quesionArray }: QuestionProps) => {
 
   useEffect(() => {
     isUser().then((res) => {
+      setIsUser(res);
+
       if (res) {
         removeCoins(100).then((res) => {
           if (res === null) {
@@ -52,17 +56,15 @@ const Question = ({ quesionArray }: QuestionProps) => {
   }, [router]);
 
   const endGame = () => {
-    isUser().then((res) => {
-      if (res) {
-        setGameEnd(true);
-      } else {
-        addCoins(100).then((res) => {
-          setIsNewUser().then(() => {
-            setIsWelcomed(true);
-          });
+    if (user) {
+      setGameEnd(true);
+    } else {
+      addCoins(100).then((res) => {
+        setIsNewUser().then(() => {
+          setIsWelcomed(true);
         });
-      }
-    });
+      });
+    }
   };
 
   const handleClick = (
@@ -104,7 +106,7 @@ const Question = ({ quesionArray }: QuestionProps) => {
 
   return (
     <>
-      {index === 1 && <RewardAdsPopUp />}
+      {index === 1 && !user && <RewardAdsPopUp />}
       <div className="flex items-center flex-col w-full gap-2">
         {isWelcomed && <Welcome />}
         {isWelcomed && (
