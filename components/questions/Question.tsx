@@ -49,7 +49,7 @@ const Question = ({ quesionArray }: QuestionProps) => {
         });
       }
     });
-  }, []);
+  }, [router]);
 
   const endGame = () => {
     isUser().then((res) => {
