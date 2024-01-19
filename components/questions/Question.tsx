@@ -8,6 +8,8 @@ import GameEnd from "./GameEnd";
 
 import { addCoins, isUser, removeCoins, setIsNewUser } from "@/action/actions";
 
+import RewardAdsPopUp from "@/components/ads/reward-ads";
+
 interface QuestionProps {
   quesionArray: question[];
 }
@@ -101,54 +103,59 @@ const Question = ({ quesionArray }: QuestionProps) => {
   if (gameEnd) return <GameEnd score={score} />;
 
   return (
-    <div className="flex items-center flex-col w-full gap-2">
-      {isWelcomed && <Welcome />}
-      {isWelcomed && (
-        <div className="absolute w-full h-full min-h-[1000px] top-0 left-0 bg-black/30 " />
-      )}
-      <span className="text-[#bac8ff] font-bold">
-        Question {index + 1 + "/" + quesionArray.length}
-      </span>
-      <p className="text-lg font-bold px-10 text-center">{question.question}</p>
-      <div className="grid grid-cols-2 gap-2 mt-6 w-full">
-        <button
-          ref={opt1}
-          className={cn(
-            "flex flex-col justify-center items-center text-[14px] py-2 min-h-[32px] bg-[#20213f] border-2 border-[#404380] rounded-full cursor-pointer"
-          )}
-          onClick={(e) => handleClick(e, 1)}
-        >
-          {question.option1}
-        </button>
-        <button
-          ref={opt2}
-          className={cn(
-            "flex flex-col justify-center items-center text-[14px] py-2 min-h-[32px] bg-[#20213f] border-2 border-[#404380] rounded-full cursor-pointer"
-          )}
-          onClick={(e) => handleClick(e, 2)}
-        >
-          {question.option2}
-        </button>
-        <button
-          ref={opt3}
-          className={cn(
-            "flex flex-col justify-center items-center text-[14px] py-2 min-h-[32px] bg-[#20213f] border-2 border-[#404380] rounded-full cursor-pointer"
-          )}
-          onClick={(e) => handleClick(e, 3)}
-        >
-          {question.option3}
-        </button>
-        <button
-          ref={opt4}
-          className={cn(
-            "flex flex-col justify-center items-center text-[14px] py-2 min-h-[32px] bg-[#20213f] border-2 border-[#404380] rounded-full cursor-pointer"
-          )}
-          onClick={(e) => handleClick(e, 4)}
-        >
-          {question.option4}
-        </button>
+    <>
+      {index === 1 && <RewardAdsPopUp />}
+      <div className="flex items-center flex-col w-full gap-2">
+        {isWelcomed && <Welcome />}
+        {isWelcomed && (
+          <div className="absolute w-full h-full min-h-[1000px] top-0 left-0 bg-black/30 " />
+        )}
+        <span className="text-[#bac8ff] font-bold">
+          Question {index + 1 + "/" + quesionArray.length}
+        </span>
+        <p className="text-lg font-bold px-10 text-center">
+          {question.question}
+        </p>
+        <div className="grid grid-cols-2 gap-2 mt-6 w-full">
+          <button
+            ref={opt1}
+            className={cn(
+              "flex flex-col justify-center items-center text-[14px] py-2 min-h-[32px] bg-[#20213f] border-2 border-[#404380] rounded-full cursor-pointer"
+            )}
+            onClick={(e) => handleClick(e, 1)}
+          >
+            {question.option1}
+          </button>
+          <button
+            ref={opt2}
+            className={cn(
+              "flex flex-col justify-center items-center text-[14px] py-2 min-h-[32px] bg-[#20213f] border-2 border-[#404380] rounded-full cursor-pointer"
+            )}
+            onClick={(e) => handleClick(e, 2)}
+          >
+            {question.option2}
+          </button>
+          <button
+            ref={opt3}
+            className={cn(
+              "flex flex-col justify-center items-center text-[14px] py-2 min-h-[32px] bg-[#20213f] border-2 border-[#404380] rounded-full cursor-pointer"
+            )}
+            onClick={(e) => handleClick(e, 3)}
+          >
+            {question.option3}
+          </button>
+          <button
+            ref={opt4}
+            className={cn(
+              "flex flex-col justify-center items-center text-[14px] py-2 min-h-[32px] bg-[#20213f] border-2 border-[#404380] rounded-full cursor-pointer"
+            )}
+            onClick={(e) => handleClick(e, 4)}
+          >
+            {question.option4}
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

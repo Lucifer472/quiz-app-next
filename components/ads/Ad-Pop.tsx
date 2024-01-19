@@ -1,88 +1,39 @@
 "use client";
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
+import dynamic from "next/dynamic";
 
-import LoadScript from "@/lib/load";
 import { X } from "lucide-react";
 
-const AdPop = () => {
-  const pathname = usePathname();
+const PopAds = () => {
+  const [isOpen, setIsOpen] = useState(true);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const Ads1 = dynamic(() => import("./ads1"), {
+    ssr: false,
+  });
 
-  window.googletag = window.googletag || { cmd: [] };
-
-  useEffect(() => {
-    if (pathname === "/") {
-      setIsOpen(true);
-    }
-
-    let sl: googletag.Slot | null;
-    let sl2: googletag.Slot | null;
-    const loadAds = async () => {
-      LoadScript(() => {
-        console.log("Script Loaded");
-      });
-    };
-    loadAds().then(() => {
-      googletag.cmd.push(function () {
-        sl = googletag.defineSlot(
-          "/22989534981/QDG_5_336X280",
-          [336, 280],
-          "div-gpt-ad-1705382679779-0"
-        );
-        sl2 = googletag.defineSlot(
-          "/22850953890/FT_9",
-          [336, 280],
-          "div-gpt-ad-1704975923390-0"
-        );
-        if (sl !== null) sl.addService(googletag.pubads());
-        if (sl2 !== null) sl2.addService(googletag.pubads());
-        googletag.pubads().enableSingleRequest();
-        googletag.enableServices();
-        googletag.display("div-gpt-ad-1705382679779-0");
-        googletag.display("div-gpt-ad-1704975923390-0");
-      });
-    });
-    return () => {
-      // Clean up the ad slot when the component unmounts or pathname changes
-      if (googletag && sl !== null) {
-        googletag.cmd.push(function () {
-          googletag.destroySlots([sl as googletag.Slot]);
-        });
-      }
-      if (googletag && sl2 !== null) {
-        googletag.cmd.push(function () {
-          googletag.destroySlots([sl2 as googletag.Slot]);
-        });
-      }
-      setIsOpen(false);
-    };
-  }, [pathname]);
   return (
-    <div className="flex flex-col items-center w-full absolute top-[50px] md:top-1/4">
+    <>
       {isOpen && (
-        <div className="w-full max-w-[350px] relative p-2 rounded-lg bg-white">
-          <button
-            onClick={() => setIsOpen(false)}
-            className="absolute bottom-[-75px] left-[30%] p-2 w-32 bg-white flex items-center gap-2 text-black rounded-lg"
-          >
-            <X />
-            <span className="">Close Ad</span>
-          </button>
-          <div
-            id="div-gpt-ad-1705382679779-0"
-            style={{ minWidth: "336px", minHeight: "280px" }}
-          ></div>
-          <div className="my-2"></div>
-          <div
-            id="div-gpt-ad-1704975923390-0"
-            style={{ minWidth: "336px", minHeight: "280px" }}
-          ></div>
-        </div>
+        <div className="absolute w-full h-full bg-black opacity-40 z-50" />
       )}
-    </div>
+      <div className="flex flex-col items-center w-full fixed top-[50px] z-[1000]">
+        {isOpen && (
+          <div className="w-full max-w-[350px] min-w-[340px] relative p-2 rounded-lg bg-white z-[1000]">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute bottom-[-75px] left-[30%] p-2 w-32 bg-white flex items-center gap-2 text-black rounded-lg"
+            >
+              <X />
+              <span>Close Ad</span>
+            </button>
+            <div className="flex items-center justify-center flex-col w-full h-full">
+              <Ads1 setIsOpen={setIsOpen} />
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
-export default AdPop;
+export default PopAds;
