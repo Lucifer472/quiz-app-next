@@ -6,6 +6,8 @@ import { getQuestionsStarter } from "@/lib/getQuestions";
 import Facts from "@/components/fact/Facts";
 import Coin from "@/components/logo/Coin";
 
+import AdPop from '@/components/ads/Ad-Pop'
+
 export const revalidate = 0;
 
 const Home = async () => {
@@ -20,9 +22,6 @@ const Home = async () => {
     ssr: false,
   });
 
-  const AdPop = dynamic(() => import("@/components/ads/Ad-Pop"), {
-    ssr: false,
-  });
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 w-full relative h-full">

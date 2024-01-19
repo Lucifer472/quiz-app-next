@@ -18,14 +18,14 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
     loadAds().then(() => {
       googletag.cmd.push(function () {
         sl = googletag.defineSlot(
-          "/22850953890/FT_9",
+          "/22989534981/QDG_4_336X280",
           [336, 280],
-          "div-gpt-ad-1704975923390-0"
+          "div-gpt-ad-1705382652307-0"
         );
         if (sl !== null) sl.addService(googletag.pubads());
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
-        googletag.display("div-gpt-ad-1704975923390-0");
+        googletag.display("div-gpt-ad-1705382652307-0");
         googletag.pubads().addEventListener("slotRenderEnded", (evt) => {
           if (evt.slot === sl && evt.isEmpty) {
             setIsOpen(false);
@@ -48,7 +48,7 @@ const PopTopAd = ({ setIsOpen }: { setIsOpen: (value: boolean) => void }) => {
   return (
     <>
       <div
-        id="div-gpt-ad-1704975923390-0"
+        id="div-gpt-ad-1705382652307-0"
         style={{ minWidth: "336px", minHeight: "280px" }}
       ></div>
     </>

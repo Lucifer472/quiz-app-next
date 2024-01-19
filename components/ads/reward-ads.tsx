@@ -15,7 +15,7 @@ const RewardAdsPopUp = () => {
   const getrewardad = () => {
     googletag.cmd.push(() => {
       const rewardedSlot = googletag.defineOutOfPageSlot(
-        "/22850953890/FT_REWARDED",
+        "22989534981/MB_Rewarded",
         googletag.enums.OutOfPageFormat.REWARDED
       );
       if (rewardedSlot === null) return;

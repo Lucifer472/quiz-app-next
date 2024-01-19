@@ -77,17 +77,17 @@ const StartQuiz = ({ quiz, questions, redirectUrl }: startQuizProps) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-around m-2">
+        <div className="flex flex-col items-center justify-around gap-2 m-2">
           <button
             onClick={() => router.push("/login")}
             className="bg-blue-900 py-2 md:py-2 px-14 md:px-7 w-full font-black text-white rounded-full"
           >
             JOIN NOW
           </button>
-          <div className="text-[20px] order-none md:order-2">or</div>
+          <div className="text-[20px]">or</div>
           <div
             onClick={() => setStart(true)}
-            className="self-center border-text md:order-1  border-[1px] w-full text-text text-center rounded-full font-bold text-sm py-3 md:px-4 px-10 cursor-pointer"
+            className="border-[1px] w-full text-text text-center rounded-full font-bold text-sm py-3 md:px-4 px-10 cursor-pointer"
           >
             PLAY AS GUEST
           </div>
